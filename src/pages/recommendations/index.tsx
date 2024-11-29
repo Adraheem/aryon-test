@@ -10,26 +10,29 @@ import {Icon} from "@iconify/react";
 import {Link} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {InfiniteData, useInfiniteQuery} from "@tanstack/react-query";
+import TextInput from "../../components/TextInput";
 
 interface IProps {
   archived?: boolean;
 }
 
 function RecommendationsPage({archived}: IProps) {
+  const [search, setSearch] = useState("");
   const [activeRecommendation, setActiveRecommendation] = useState<Recommendation | undefined>();
 
   const {
     data, fetchNextPage, hasNextPage
   } = useInfiniteQuery<RecommendationsDataResponse, Error, InfiniteData<RecommendationsDataResponse, unknown>, string[], string>({
-      queryKey: ["recommendations", (archived ? "archived" : "unarchived")],
+      queryKey: ["recommendations", (archived ? "archived" : "unarchived"), search],
       queryFn: ({pageParam}) => recommendationService.getRecommendations({
         archive: archived,
-        cursor: pageParam
+        cursor: pageParam,
+        search,
       }),
       retry: 0,
       refetchInterval: false,
       refetchOnWindowFocus: false,
-      getNextPageParam: (lastPage) => lastPage.pagination.cursor.next,
+      getNextPageParam: (lastPage) => lastPage.pagination.cursor.next ?? undefined,
       initialPageParam: "",
     }
   );
@@ -61,6 +64,19 @@ function RecommendationsPage({archived}: IProps) {
             </div>
           )
         }
+      </div>
+
+      <div className="my-10 flex justify-between flex-wrap items-center">
+        <div className="w-full max-w-sm">
+          <TextInput
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Search"
+          />
+        </div>
+        <p className="text-slate-500">
+          Showing {flatData.length} of {data?.pages[0]?.pagination.totalItems ?? 0}
+        </p>
       </div>
 
       <InfiniteScroll
