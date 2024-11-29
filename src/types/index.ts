@@ -103,6 +103,7 @@ export interface RecommendationsDataResponse extends PaginatedResponse<Recommend
 
 export interface RecommendationsFilter {
   search?: string;
+  cursor?: string;
   limit?: number;
   tags?: string[];
   archive?: boolean;

@@ -147,7 +147,12 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
           {
             data.furtherReading.map((reading, idx) => (
               <p key={idx}>
-                <a href={reading.href} target="_blank" className="inline-flex items-center gap-3">
+                <a
+                  href={reading.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3"
+                >
                   <span>{reading.name}</span>
                   <Icon icon="heroicons-outline:external-link" width={18} height={18}/>
                 </a>

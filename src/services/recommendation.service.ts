@@ -7,9 +7,10 @@ class RecommendationService {
     return new Promise((resolve, reject) => {
       apiInstance.get("/recommendations" + (filter.archive ? "/archive" : ""), {
         params: {
-          limit: filter.limit ?? 10,
+          limit: filter.limit ?? 20,
           search: filter.search,
           tags: !!filter.tags && filter.tags.length > 0 ? filter.tags.join(",") : null,
+          cursor: filter.cursor,
         }
       })
         .then((res: AxiosResponse<RecommendationsDataResponse>) => {
