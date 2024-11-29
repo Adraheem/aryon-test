@@ -4,6 +4,7 @@ import DashboardPage from "../pages/dashboard";
 import Layout from "../components/Layout";
 import RecommendationsPage from "../pages/recommendations";
 import LoginPage from "../pages/login";
+import LogoutPage from "../pages/logout";
 
 interface IProps {
 }
@@ -13,6 +14,7 @@ function RootNavigation(props: IProps) {
     <BrowserRouter>
       <Routes>
         <Route path="login" element={<LoginPage/>}/>
+        <Route path="logout" element={<LogoutPage/>}/>
         <Route element={<Layout/>}>
           <Route path="" element={<DashboardPage/>}/>
           <Route path="recommendations" element={<RecommendationsPage/>}/>

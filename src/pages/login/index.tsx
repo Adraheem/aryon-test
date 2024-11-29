@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Container from "../../components/Container";
 import {Field, FieldProps, Form, Formik, FormikHelpers} from "formik";
 import TextInput from "../../components/TextInput";
@@ -6,11 +6,22 @@ import * as yup from "yup"
 import Button from "../../components/Button";
 import {ILoginRequest} from "../../types";
 import authService from "../../services/auth.service";
+import useAuthContext from "../../context/authContext/hook";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
 }
 
 function LoginPage(props: IProps) {
+  const {isAuthenticated, login} = useAuthContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/", {replace: true});
+    }
+  }, [isAuthenticated, navigate]);
+
   const validationSchema = yup.object().shape({
     username: yup.string().required("Required"),
     password: yup.string().required("Required")
@@ -24,7 +35,8 @@ function LoginPage(props: IProps) {
   const onSubmit = (values: ILoginRequest, helpers: FormikHelpers<ILoginRequest>) => {
     authService.login(values)
       .then(res => {
-
+        helpers.setSubmitting(false);
+        login(res.token);
       })
       .catch(err => {
         helpers.setSubmitting(false);

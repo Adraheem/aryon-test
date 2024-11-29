@@ -2,6 +2,7 @@ import React from 'react';
 import NavList from "./navlist";
 import {Link} from "react-router-dom";
 import SidebarProfile from "./sidebarProfile";
+import {navItems} from "../../assets/data";
 
 interface IProps {
 }
@@ -19,10 +20,13 @@ function Sidebar(props: IProps) {
 
       <div className="flex-1 overflow-y-auto p-4">
         <p className="small mb-2">Platform</p>
-        <NavList/>
+        <NavList items={navItems}/>
       </div>
 
       <SidebarProfile/>
+      <div className="p-4 pt-0">
+        <NavList items={[{title: "Logout", href: "/logout", icon: "fe:logout"}]}/>
+      </div>
     </aside>
   );
 }

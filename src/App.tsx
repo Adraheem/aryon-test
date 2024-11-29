@@ -1,9 +1,12 @@
 import React from 'react';
 import RootNavigation from "./navigation";
+import Providers from "./context";
 
 function App() {
   return (
-    <RootNavigation/>
+    <Providers>
+      <RootNavigation/>
+    </Providers>
   );
 }
 

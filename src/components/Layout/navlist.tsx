@@ -1,15 +1,16 @@
 import React from 'react';
 import NavItem from "./navItem";
-import {navItems} from "../../assets/data";
+import {INavItem} from "../../types";
 
 interface IProps {
+  items: INavItem[]
 }
 
-function NavList(props: IProps) {
+function NavList({items}: IProps) {
   return (
     <ul className="grid gap-1">
       {
-        navItems.map((navItem, index) => (
+        items.map((navItem, index) => (
           <NavItem key={`navItem-${index}`} {...navItem} />
         ))
       }
