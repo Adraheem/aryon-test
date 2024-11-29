@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface IProps {
-  score: 0 | 1 | 2 | 3 | 4
+  score: number
 }
 
 function ValueScore({score}: IProps) {

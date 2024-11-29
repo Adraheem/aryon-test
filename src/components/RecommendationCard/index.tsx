@@ -2,13 +2,16 @@ import React from 'react';
 import {Icon} from "@iconify/react";
 import Badge from "../Badge";
 import ValueScore from "../ValueScore";
+import {Recommendation} from "../../types";
+import ProviderIcon from "../ProviderIcon";
 
 interface IProps {
   onClick?: () => void
   archived?: boolean
+  data: Recommendation
 }
 
-function RecommendationCard({onClick, archived}: IProps) {
+function RecommendationCard({onClick, archived, data}: IProps) {
   return (
     <button
       onClick={onClick}
@@ -22,40 +25,35 @@ function RecommendationCard({onClick, archived}: IProps) {
       </div>
       <div className="flex-1 p-4">
         <div className="flex items-center">
-          <h5 className="font-semibold flex-1">Linux VMs best practices</h5>
+          <h5 className="font-semibold flex-1">{data.title}</h5>
           <div className="flex flex-wrap gap-2 text-slate-500">
-            <Icon icon="bxl:google-cloud" width="24" height="24"/>
-            <Icon icon="mdi:aws" width="24" height="24"/>
-            <Icon icon="lineicons:azure" width="24" height="24"/>
+            {
+              data.provider.map((provider, idx) => (
+                <ProviderIcon key={idx} cloudProvider={provider}/>
+              ))
+            }
           </div>
         </div>
         <p className="line-clamp-3">
-          Duis luctus non eros sed aliquam. Phasellus imperdiet aliquet suscipit. Suspendisse
-          pellentesque tellus vel enim consequat pulvinar. Fusce faucibus aliquet nulla non
-          dignissim. Quisque tincidunt nec nulla vel tristique. Cras rutrum massa elementum ligula
-          laoreet, at faucibus neque imperdiet. Morbi rhoncus porta velit non finibus. Sed enim
-          purus, aliquet vel justo sed, pulvinar ultrices enim. Donec non mollis nisl, vitae
-          accumsan nunc. Nunc pharetra aliquet turpis, sed pretium mi viverra sit amet. Nulla
-          lobortis, turpis non fermentum convallis, quam nibh mattis nisl, eget sodales justo orci
-          ut orci. Cras eget eros lobortis nibh ultricies ultrices id in odio. Proin blandit
-          ullamcorper sem. Praesent sed tristique elit. Maecenas efficitur nec orci ac malesuada.
+          {data.description}
         </p>
         <div className="flex gap-2 flex-wrap mt-4">
-          <Badge text="CIS Cloud"/>
-          <Badge text="CIS Cloud"/>
-          <Badge text="CIS Cloud"/>
-          <Badge text="CIS Cloud"/>
-          <Badge text="+5"/>
+          {
+            data.frameworks.map((framework, idx) => (
+              <Badge key={`framework-${idx}`} text={framework.name}/>
+            ))
+          }
         </div>
       </div>
       <div className="p-3">
         <div className="bg-zinc-100 rounded-md text-center p-5 h-full flex flex-col justify-center">
           <h6 className="font-semibold">Impact assessment</h6>
-          <p className="text-slate-500">~115 violations / month</p>
+          <p className="text-slate-500">~{data.impactAssessment.totalViolations} violations /
+            month</p>
           <hr className='my-3'/>
           <div className="flex gap-3 justify-center items-center">
             <p className="font-semibold">Value score</p>
-            <ValueScore score={3}/>
+            <ValueScore score={Math.floor(data.score / 100 * 4)}/>
           </div>
         </div>
       </div>

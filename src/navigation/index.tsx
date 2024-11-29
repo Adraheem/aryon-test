@@ -17,7 +17,8 @@ function RootNavigation(props: IProps) {
         <Route path="logout" element={<LogoutPage/>}/>
         <Route element={<Layout/>}>
           <Route path="" element={<DashboardPage/>}/>
-          <Route path="recommendations" element={<RecommendationsPage/>}/>
+          <Route path="recommendations" element={<RecommendationsPage archived={false}/>}/>
+          <Route path="recommendations/archive" element={<RecommendationsPage archived={true}/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
