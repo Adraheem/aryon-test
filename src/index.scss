@@ -49,4 +49,22 @@
   .apply-transition {
     @apply transition-all duration-150 ease-in-out;
   }
+
+  .btn {
+    @apply inline-flex items-center justify-center text-center gap-2 body px-6 py-2 apply-transition rounded-lg;
+  }
+
+  .slide-in {
+    @apply apply-transition translate-x-0;
+    animation: slide-kf .5s ease-in-out forwards;
+  }
+
+  @keyframes slide-kf {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
 }

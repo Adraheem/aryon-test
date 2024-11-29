@@ -4,15 +4,19 @@ import Badge from "../Badge";
 import ValueScore from "../ValueScore";
 
 interface IProps {
+  onClick?: () => void
+  archived?: boolean
 }
 
-function RecommendationCard(props: IProps) {
+function RecommendationCard({onClick, archived}: IProps) {
   return (
     <button
-      className="text-left flex gap-4 shadow hover:shadow-xl apply-transition bg-white rounded-xl overflow-hidden items-stretch">
+      onClick={onClick}
+      className="text-left flex gap-4 shadow hover:shadow-xl apply-transition bg-white rounded-xl overflow-hidden items-stretch"
+    >
       <div>
         <div
-          className="bg-primary text-white flex items-center justify-center h-full w-36">
+          className={`${archived ? "bg-slate-300" : "bg-primary"} text-white flex items-center justify-center h-full w-36`}>
           <Icon icon="octicon:package-16" width="32" height="32"/>
         </div>
       </div>
