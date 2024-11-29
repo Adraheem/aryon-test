@@ -67,4 +67,15 @@
       transform: translateX(0%);
     }
   }
+
+  .text-input {
+    @apply apply-transition bg-white border border-slate-200 focus:border-primary h-12 px-4 py-2 outline-0 w-full block rounded-md focus:ring-4 focus:ring-primary-200;
+  }
+  .text-input.input-error {
+    @apply text-red-500 border-red-500 focus:ring-red-200;
+  }
+
+  .text-input-error {
+    @apply text-red-500 small mt-1;
+  }
 }
