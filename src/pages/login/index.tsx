@@ -1,9 +1,11 @@
 import React from 'react';
 import Container from "../../components/Container";
-import {Field, FieldProps, Form, Formik} from "formik";
+import {Field, FieldProps, Form, Formik, FormikHelpers} from "formik";
 import TextInput from "../../components/TextInput";
 import * as yup from "yup"
 import Button from "../../components/Button";
+import {ILoginRequest} from "../../types";
+import authService from "../../services/auth.service";
 
 interface IProps {
 }
@@ -14,9 +16,20 @@ function LoginPage(props: IProps) {
     password: yup.string().required("Required")
   })
 
-  const initialValues = {}
+  const initialValues: ILoginRequest = {
+    username: "",
+    password: ""
+  }
 
-  const onSubmit = () => {
+  const onSubmit = (values: ILoginRequest, helpers: FormikHelpers<ILoginRequest>) => {
+    authService.login(values)
+      .then(res => {
+
+      })
+      .catch(err => {
+        helpers.setSubmitting(false);
+
+      });
   }
 
   return (
@@ -57,7 +70,13 @@ function LoginPage(props: IProps) {
               </Field>
 
               <div>
-                <Button disabled>Login</Button>
+                <Button
+                  isLoading={isSubmitting}
+                  disabled={isSubmitting || !isValid}
+                  type="submit"
+                >
+                  Login
+                </Button>
               </div>
             </Form>
           )}

@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import {Icon} from "@iconify/react";
-import {INavItem} from "../../types/common.types";
+import {INavItem} from "../../types";
 
 interface IProps extends INavItem {
   active?: boolean;
