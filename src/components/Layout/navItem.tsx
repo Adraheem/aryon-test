@@ -10,7 +10,8 @@ interface IProps extends INavItem {
 function NavItem({title, href, icon}: IProps) {
   const {pathname} = useLocation();
 
-  const active = useMemo(() => pathname === href || pathname.startsWith(href), [pathname]);
+  const active = useMemo(() => pathname === href || (href !== "/" && pathname.startsWith(href)),
+    [pathname, href]);
 
   return (
     <li>

@@ -7,7 +7,7 @@ interface IProps {
 
 function Layout(props: IProps) {
   return (
-    <div className="grid-cols-[minmax(0,250px)_minmax(0,1fr)]">
+    <div className="grid grid-cols-[minmax(0,250px)_minmax(0,1fr)]">
       <div>
         <Sidebar/>
       </div>

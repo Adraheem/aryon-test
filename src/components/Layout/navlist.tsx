@@ -1,6 +1,6 @@
 import React from 'react';
 import NavItem from "./navItem";
-import {navItems} from "../assets/data";
+import {navItems} from "../../assets/data";
 
 interface IProps {
 }

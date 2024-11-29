@@ -41,6 +41,12 @@
   }
 
   small, .small {
-    font-size: 0.750rem;
+    font-size: 0.850rem;
+  }
+}
+
+@layer components {
+  .apply-transition {
+    @apply transition-all duration-150 ease-in-out;
   }
 }
