@@ -19,6 +19,7 @@ function RecommendationCard({onClick, archived, data}: IProps) {
     >
       <div>
         <div
+          data-testid="card-package"
           className={`${archived ? "bg-slate-300" : "bg-primary"} text-white flex items-center justify-center h-full w-12 md:w-36`}>
           <Icon icon="octicon:package-16" width="32" height="32"/>
         </div>
