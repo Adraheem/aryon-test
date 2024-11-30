@@ -6,6 +6,8 @@ import ValueScore from "../../components/ValueScore";
 import {Recommendation} from "../../types";
 import ProviderIcon from "../../components/ProviderIcon";
 import recommendationService from "../../services/recommendation.service";
+import toast from "react-hot-toast";
+import {providers} from "../../assets/data";
 
 interface IProps {
   data?: Recommendation;
@@ -20,9 +22,11 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
     const action = archived ? recommendationService.unarchive : recommendationService.archive;
     action(data?.recommendationId)
       .then(res => {
-        onClose && onClose()
+        toast.success(archived ? "Post unarchived successfully" : "Post archived successfully");
+        onClose && onClose();
       })
       .catch(err => {
+        toast.error(err?.response?.data?.error ?? err?.message ?? "An error occurred")
       })
   }, [archived, data?.recommendationId, onClose]);
 
@@ -50,11 +54,10 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
                 data.provider.map((provider, idx) => (
                   <div key={idx} className="inline-flex gap-1 items-center">
                     <ProviderIcon cloudProvider={provider}/>
-                    <p className="font-semibold">{provider}</p>
+                    <p className="font-semibold">{providers.get(provider)}</p>
                   </div>
                 ))
               }
-
 
             </div>
           </div>

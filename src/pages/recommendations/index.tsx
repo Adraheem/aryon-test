@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Container from "../../components/Container";
 import RecommendationCard from "../../components/RecommendationCard";
 import Modal from "../../components/Modal";
@@ -19,11 +19,20 @@ interface IProps {
 function RecommendationsPage({archived}: IProps) {
   const [search, setSearch] = useState("");
   const [activeRecommendation, setActiveRecommendation] = useState<Recommendation | undefined>();
+  const [debouncedTerm, setDebouncedTerm] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedTerm(search);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [search]);
 
   const {
-    data, fetchNextPage, hasNextPage
+    data, fetchNextPage, hasNextPage, isLoading
   } = useInfiniteQuery<RecommendationsDataResponse, Error, InfiniteData<RecommendationsDataResponse, unknown>, string[], string>({
-      queryKey: ["recommendations", (archived ? "archived" : "unarchived"), search],
+      queryKey: ["recommendations", (archived ? "archived" : "unarchived"), debouncedTerm],
       queryFn: ({pageParam}) => recommendationService.getRecommendations({
         archive: archived,
         cursor: pageParam,
@@ -39,7 +48,7 @@ function RecommendationsPage({archived}: IProps) {
 
   const flatData = useMemo(() => {
     if (data) {
-      return data.pages.reduce<Recommendation[]>((newArr, p) => newArr.concat(p.data.slice(1)), []);
+      return data.pages.reduce<Recommendation[]>((newArr, p, idx) => newArr.concat(p.data.slice(idx === 0 ? 0 : 1)), []);
     }
     return [];
   }, [data]);
@@ -79,29 +88,44 @@ function RecommendationsPage({archived}: IProps) {
         </p>
       </div>
 
-      <InfiniteScroll
-        dataLength={data?.pages[0]?.pagination.totalItems ?? 0}
-        next={fetchNextPage}
-        hasMore={hasNextPage ?? false}
-        scrollThreshold="600px"
-        loader={<p className="small text-center mt-8 text-slate-500">Loading...</p>}
-        endMessage={
-          <p className="small text-center mt-8 text-slate-500">No more recommendations</p>
-        }
-      >
-        <div className="grid gap-4">
-          {
-            flatData.map(recommendation => (
-              <RecommendationCard
-                key={recommendation.recommendationId}
-                data={recommendation}
-                onClick={() => setActiveRecommendation(recommendation)}
-                archived={archived}
-              />
-            ))
-          }
-        </div>
-      </InfiniteScroll>
+      {
+        isLoading ? (
+          <div className="py-8 flex flex-col items-center gap-4 text-slate-400">
+            <Icon icon="line-md:loading-twotone-loop" width={64} height={64}/>
+            <p>Loading...</p>
+          </div>
+        ) : flatData.length === 0 ? (
+          <div className="py-8 flex flex-col items-center gap-4 text-slate-400">
+            <Icon icon="qlementine-icons:empty-slot-16" width={64} height={64}/>
+            <p>No recommendations</p>
+          </div>
+        ) : (
+          <InfiniteScroll
+            dataLength={data?.pages[0]?.pagination.totalItems ?? 0}
+            next={fetchNextPage}
+            hasMore={hasNextPage ?? false}
+            scrollThreshold="600px"
+            loader={<p className="small text-center mt-8 text-slate-500">Loading...</p>}
+            endMessage={
+              <p className="small text-center mt-8 text-slate-500">No more recommendations</p>
+            }
+          >
+            <div className="grid gap-4">
+              {
+                flatData.map(recommendation => (
+                  <RecommendationCard
+                    key={recommendation.recommendationId}
+                    data={recommendation}
+                    onClick={() => setActiveRecommendation(recommendation)}
+                    archived={archived}
+                  />
+                ))
+              }
+            </div>
+          </InfiniteScroll>
+        )
+      }
+
       <Modal isOpen={!!activeRecommendation} onClose={closeModal}>
         <RecommendationDetail data={activeRecommendation} onClose={closeModal} archived={archived}/>
       </Modal>

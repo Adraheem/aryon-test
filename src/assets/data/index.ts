@@ -1,4 +1,4 @@
-import {INavItem} from "../../types";
+import {CloudProvider, INavItem} from "../../types";
 
 export const navItems: INavItem[] = [
   {
@@ -27,3 +27,9 @@ export const navItems: INavItem[] = [
     icon: "ph:seal-warning"
   },
 ];
+
+export const providers: Map<CloudProvider, string> = new Map([
+  [CloudProvider.AZURE, "Azure"],
+  [CloudProvider.AWS, "Amazon Web Service"],
+  [CloudProvider.UNSPECIFIED, "Unspecified"],
+]);

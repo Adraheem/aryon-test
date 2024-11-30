@@ -8,6 +8,8 @@ import {ILoginRequest} from "../../types";
 import authService from "../../services/auth.service";
 import useAuthContext from "../../context/authContext/hook";
 import {useNavigate} from "react-router-dom";
+import toast from "react-hot-toast";
+import Logo from "../../components/Logo";
 
 interface IProps {
 }
@@ -40,15 +42,22 @@ function LoginPage(props: IProps) {
       })
       .catch(err => {
         helpers.setSubmitting(false);
-
+        if (err?.response?.data?.error) {
+          helpers.setErrors({username: err.response.data.error})
+        } else {
+          toast.error(err.message ?? "An error occurred")
+        }
       });
   }
 
   return (
     <Container>
       <div
-        className="bg-white w-full max-w-xl p-8 mx-auto rounded-lg shadow-xl border border-slate-200">
-        <h3 className="leading-none">Login</h3>
+        className="bg-white w-full max-w-xl p-8 mx-auto rounded-lg shadow-xl border border-slate-200"
+      >
+        <Logo/>
+
+        <h3 className="leading-none mt-6">Login</h3>
 
         <Formik
           initialValues={initialValues}

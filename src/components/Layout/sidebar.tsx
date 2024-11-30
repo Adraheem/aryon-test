@@ -3,6 +3,7 @@ import NavList from "./navlist";
 import {Link} from "react-router-dom";
 import SidebarProfile from "./sidebarProfile";
 import {navItems} from "../../assets/data";
+import Logo from "../Logo";
 
 interface IProps {
 }
@@ -13,8 +14,7 @@ function Sidebar(props: IProps) {
       className="h-screen fixed left-0 top-0 bottom-0 w-[250px] flex flex-col bg-white border-r border-r-slate-200">
       <div className="p-6">
         <Link to="/">
-          <h4 className="leading-none">Aryon</h4>
-          <p className="leading-none">Enterprise</p>
+          <Logo/>
         </Link>
       </div>
 
