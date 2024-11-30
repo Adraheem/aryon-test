@@ -74,7 +74,7 @@ function FilterTags(props: IProps) {
                 <p className="capitalize py-2 px-4 bg-slate-200 my-2">{entry[0]}</p>
                 {
                   entry[1].map((tag, index) => (
-                    <label key={`tag-${entry[0]}-${index}`} className="block">
+                    <label key={`tag-${entry[0]}-${index}`} data-testid={tag} className="block">
                       <input
                         type="checkbox"
                         checked={checked.includes(tag)}

@@ -2,7 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest',
   },
   moduleNameMapper: {
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
@@ -10,4 +10,7 @@ module.exports = {
   },
   moduleDirectories: ['node_modules', 'src'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  transformIgnorePatterns: [
+    "node_modules/(?!(axios)/)"
+  ]
 };
