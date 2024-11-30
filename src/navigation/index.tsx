@@ -1,10 +1,11 @@
 import React from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import DashboardPage from "../pages/dashboard";
-import Layout from "../components/Layout";
-import RecommendationsPage from "../pages/recommendations";
-import LoginPage from "../pages/login";
-import LogoutPage from "../pages/logout";
+
+const DashboardPage = React.lazy(() => import('../pages/dashboard'));
+const Layout = React.lazy(() => import('../components/Layout'));
+const RecommendationsPage = React.lazy(() => import('../pages/recommendations'));
+const LoginPage = React.lazy(() => import('../pages/login'));
+const LogoutPage = React.lazy(() => import('../pages/logout'));
 
 interface IProps {
 }
