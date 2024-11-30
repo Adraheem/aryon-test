@@ -1,46 +1,156 @@
-# Getting Started with Create React App
+# Aryon Frontend Take-home Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React frontend take-home assessment to test my frontend skills.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Demo
+[![Explainer Video](https://img.youtube.com/vi/F_lhajtauas/0.jpg)](https://www.youtube.com/watch?v=F_lhajtauas)
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Set up
+Install dependencies
+```shell
+yarn
+```
+Start the project, the app will start on [http://localhost:3000](http://localhost:3000)
+```shell
+yarn start
+```
+Run tests
+```shell
+yarn test
+```
+Run tests with coverage
+```shell
+yarn test:coverage
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Developer
+This project is developed by **Raheem Adebayo**, a senior frontend engineer with over 5 years of
+professional experience developing projects in various industries (Social networking, Logistics,
+Entertainment, Fintech and Edutech).
 
-### `yarn test`
+### My Frontend Stack
+[![My Skills](https://skillicons.dev/icons?i=ts,react,jest,nextjs,css,sass,tailwind,docker,figma&theme=dark)](https://linkedin.com/in/adebayo-raheem)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Contact
+- Email: [adraheemzy@gmail.com](mailto:adraheemzy@gmail.com)
+- GitHub: [Raheem Adebayo](https://github.com/Adraheem)
+- LinkedIn: [Raheem (Oluseyi) Adebayo](https://linkedin.com/in/adebayo-raheem)
 
-### `yarn build`
+## About
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**About the Project:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The **Security Rules Management Dashboard** is a React-based web application designed to empower security teams with an intuitive, streamlined interface for managing, reviewing, and enforcing security policy rules. This tool offers robust capabilities for viewing and searching large datasets of security rule recommendations, allowing security professionals to efficiently track compliance, review potential vulnerabilities, and take action based on recommended security measures.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Key features of the dashboard include:
+- **Search and Filtering**: A powerful search functionality to quickly locate specific security rule recommendations, with options to filter results based on various criteria.
+- **Detailed Rule Insights**: Clear presentation of security recommendations, including details such as impact assessments, affected resources, and associated frameworks.
+- **Efficient Data Handling**: Designed to handle large datasets seamlessly, ensuring smooth performance even with extensive rule data.
+- **User-Friendly Interface**: An intuitive design that allows security teams to easily navigate through recommendations, view detailed information, and take necessary actions on policy rules.
 
-### `yarn eject`
+With this dashboard, security teams can manage and prioritize security rules effectively, ensuring that the organization stays on top of emerging security threats and compliance requirements.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Features
+#### 1. Main Dashboard View
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Infinite scrolling list of recommendations
+- Each recommendation card displays:
+    - Title and description
+    - Risk score indicator
+    - Cloud provider icons
+    - Framework compliance badges
+    - Quick archive action
+- Responsive flex layout
+- Loading states and error handling
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### 2. Search & Filter System
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Debounced search (300ms) across:
+    - Title
+    - Description
+    - Reasons
+    - Framework names
+- Multi-tag filtering:
+    - Framework filters
+    - Cloud provider filters
+    - Risk class filters
+    - Reason filters
+- Real-time results updates
+- Clear loading states
+- "No results" handling
 
-## Learn More
+#### 3. Detail View
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Side panel implementation
+- Complete recommendation details:
+    - Full description
+    - Impact assessment
+    - Resource implications (Resources enforced by policy)
+    - Framework compliance
+    - Implementation reasons
+- Archive/unarchive functionality
+- Smooth transitions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 4. Archive Management
+
+- Separate archived items view
+- Unarchive capability
+- Maintained filter/search state
+- Success/error messaging
+
+#### 5. Authentication & Authorization
+
+- Login page with form validation
+- Protected routes implementation
+- Session management
+- Logout functionality
+- Auth state persistence
+
+### Technical Requirements
+
+1. TypeScript Implementation:
+
+- Strict mode enabled
+- Full type coverage
+- Proper interface definitions
+
+2. State Management:
+
+- React Context for:
+    - Auth state
+    - User preferences
+    - Filter state
+- Clean state organization
+- Proper state persistence
+
+3. Routing & Navigation:
+
+- Protected route implementation
+- Route-based code splitting
+- Deep linking support
+- Navigation state management
+
+4. Session Management (Bonus):
+
+- JWT token handling
+- Session timeout handling
+- Auth state synchronization
+
+1. Styling:
+
+- TailwindCSS
+- Responsive design
+- Consistent theming
+
+6. Performance:
+
+- Code splitting
+- Lazy loading
+- Proper memoization
+- Loading state management
+
+7. Testing:
+
+- Unit tests for components
