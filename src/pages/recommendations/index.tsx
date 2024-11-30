@@ -54,7 +54,7 @@ function RecommendationsPage({archived}: IProps) {
   return (
     <Container>
       <div className="flex items-center mb-10">
-        <h4>Recommendations</h4>
+        <h4 className="h5 md:h4">Recommendations</h4>
         {
           !archived && (
             <div className="ml-auto">
@@ -69,9 +69,9 @@ function RecommendationsPage({archived}: IProps) {
         }
       </div>
 
-      <div className="my-10 flex justify-between flex-wrap items-center">
+      <div className="my-10 flex justify-between flex-wrap gap-4 items-center">
         <RecommendationsFilter setDebouncedTerm={setDebouncedTerm}/>
-        <p className="text-slate-500">
+        <p className="text-slate-500 w-full md:w-auto">
           Showing {flatData.length} of {data?.pages[0]?.pagination.totalItems ?? 0}
         </p>
       </div>

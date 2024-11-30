@@ -34,8 +34,8 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="p-10 flex-1 overflow-y-auto">
-        <div className="flex gap-4 items-center">
+      <div className="p-5 md:p-10 flex-1 overflow-y-auto">
+        <div className="flex gap-4 items-start md:items-center">
           <div>
             <div
               className="h-16 w-16 bg-primary text-white flex items-center justify-center p-5 rounded-md">
@@ -44,7 +44,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
           </div>
           <div className="flex-1">
             <h5 className="font-semibold">{data.title}</h5>
-            <div className="flex items-center gap-5">
+            <div className="flex items-center flex-wrap gap-x-5 gap-y-2 mt-4">
               <div className="inline-flex gap-3 items-center">
                 <p className="font-semibold">Value score</p>
                 <ValueScore score={Math.floor(data.score / 100 * 4)}/>
@@ -114,7 +114,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
             <Icon icon="fe:bar-chart" width={20} height={20}/>
             <h6 className="font-semibold">Impact Assessment</h6>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             <div className="border border-slate-200 bg-slate-100 rounded-lg p-5">
               <div className="flex items-center justify-between">
                 <p>Overall</p>
