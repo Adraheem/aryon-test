@@ -91,10 +91,10 @@ export interface SuccessResponse {
 }
 
 export interface AvailableTags {
-  classes: [];
-  frameworks: [];
-  providers: [];
-  reasons: []
+  classes: string[];
+  frameworks: string[];
+  providers: string[];
+  reasons: string[]
 }
 
 export interface RecommendationsDataResponse extends PaginatedResponse<Recommendation> {

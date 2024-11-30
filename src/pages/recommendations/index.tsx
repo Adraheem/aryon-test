@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import Container from "../../components/Container";
 import RecommendationCard from "../../components/RecommendationCard";
 import Modal from "../../components/Modal";
@@ -10,33 +10,27 @@ import {Icon} from "@iconify/react";
 import {Link} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {InfiniteData, useInfiniteQuery} from "@tanstack/react-query";
-import TextInput from "../../components/TextInput";
+import RecommendationsFilter from "./filter";
+import useFilterContext from "../../context/filterContext/hook";
 
 interface IProps {
   archived?: boolean;
 }
 
 function RecommendationsPage({archived}: IProps) {
-  const [search, setSearch] = useState("");
   const [activeRecommendation, setActiveRecommendation] = useState<Recommendation | undefined>();
   const [debouncedTerm, setDebouncedTerm] = useState("");
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedTerm(search);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [search]);
+  const {tags} = useFilterContext();
 
   const {
     data, fetchNextPage, hasNextPage, isLoading
   } = useInfiniteQuery<RecommendationsDataResponse, Error, InfiniteData<RecommendationsDataResponse, unknown>, string[], string>({
-      queryKey: ["recommendations", (archived ? "archived" : "unarchived"), debouncedTerm],
+      queryKey: ["recommendations", (archived ? "archived" : "unarchived"), debouncedTerm, JSON.stringify(tags)],
       queryFn: ({pageParam}) => recommendationService.getRecommendations({
         archive: archived,
         cursor: pageParam,
-        search,
+        search: debouncedTerm,
+        tags
       }),
       retry: 0,
       refetchInterval: false,
@@ -76,13 +70,7 @@ function RecommendationsPage({archived}: IProps) {
       </div>
 
       <div className="my-10 flex justify-between flex-wrap items-center">
-        <div className="w-full max-w-sm">
-          <TextInput
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Search"
-          />
-        </div>
+        <RecommendationsFilter setDebouncedTerm={setDebouncedTerm}/>
         <p className="text-slate-500">
           Showing {flatData.length} of {data?.pages[0]?.pagination.totalItems ?? 0}
         </p>
