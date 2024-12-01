@@ -1,7 +1,8 @@
 export interface INavItem {
-  href: string;
+  href?: string;
   title: string;
   icon: string;
+  onClick?: () => void;
 }
 
 export interface ILoginRequest {

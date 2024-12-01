@@ -6,6 +6,7 @@ import {navItems} from "../../assets/data";
 import Logo from "../Logo";
 import Button from "../Button";
 import {Icon} from "@iconify/react";
+import useAuthContext from "../../context/authContext/hook";
 
 interface IProps {
   isOpen: boolean;
@@ -13,6 +14,8 @@ interface IProps {
 }
 
 function Sidebar({isOpen, setIsOpen}: IProps) {
+  const {logout} = useAuthContext();
+
   return (
     <aside
       className={`h-screen fixed left-0 top-0 bottom-0 w-10/12 md:w-[250px] flex flex-col bg-white border-r border-r-slate-200 apply-transition
@@ -38,7 +41,7 @@ function Sidebar({isOpen, setIsOpen}: IProps) {
 
       <SidebarProfile/>
       <div className="p-4 pt-0">
-        <NavList items={[{title: "Logout", href: "/logout", icon: "fe:logout"}]}/>
+        <NavList items={[{title: "Logout", icon: "fe:logout", onClick: logout}]}/>
       </div>
     </aside>
   );

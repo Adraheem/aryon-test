@@ -1,13 +1,13 @@
+import {Icon} from '@iconify/react';
 import React, {useMemo} from 'react';
 import {Link, useLocation} from "react-router-dom";
-import {Icon} from "@iconify/react";
 import {INavItem} from "../../types";
 
 interface IProps extends INavItem {
   active?: boolean;
 }
 
-function NavItem({title, href, icon}: IProps) {
+function NavItem({title, href = "#", icon, onClick}: IProps) {
   const {pathname} = useLocation();
 
   const active = useMemo(() => pathname === href || (href !== "/" && pathname.startsWith(href)),
@@ -17,6 +17,12 @@ function NavItem({title, href, icon}: IProps) {
     <li>
       <Link
         to={href}
+        onClick={(e) => {
+          if (!!onClick) {
+            e.preventDefault();
+            onClick();
+          }
+        }}
         className={`flex gap-2 items-center p-2 rounded-md ${active ?
           "bg-primary-100 text-primary" :
           "text-slate-600 hover:bg-primary-100 hover:text-primary"}`}
@@ -25,7 +31,8 @@ function NavItem({title, href, icon}: IProps) {
         <p>{title}</p>
       </Link>
     </li>
-  );
+  )
+    ;
 }
 
 export default NavItem;
