@@ -70,6 +70,7 @@ describe('RecommendationDetail', () => {
   });
 
   it('calls toggleArchive and displays success toast on successful archive', async () => {
+    // @ts-ignore
     recommendationService.archive.mockResolvedValueOnce({});
     render(<RecommendationDetail data={mockData} archived={false} onClose={jest.fn()}/>);
 
@@ -81,6 +82,7 @@ describe('RecommendationDetail', () => {
   });
 
   it('handles archive error gracefully', async () => {
+    // @ts-ignore
     recommendationService.archive.mockRejectedValueOnce({response: {data: {error: 'Error'}}});
     render(<RecommendationDetail data={mockData} archived={false} onClose={jest.fn()}/>);
 

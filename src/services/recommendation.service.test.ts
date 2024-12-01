@@ -1,7 +1,7 @@
 import apiInstance from "./api.service";
 import recommendationService from "./recommendation.service";
-import { AxiosResponse } from "axios";
-import { RecommendationsDataResponse, RecommendationsFilter, SuccessResponse } from "../types";
+import {AxiosRequestHeaders, AxiosResponse} from "axios";
+import {RecommendationsDataResponse, RecommendationsFilter, SuccessResponse} from "../types";
 
 jest.mock("./api.service");
 
@@ -16,16 +16,25 @@ describe("RecommendationService", () => {
   describe("getRecommendations", () => {
     it("should fetch recommendations successfully", async () => {
       const mockResponse: AxiosResponse<RecommendationsDataResponse> = {
-        data: { recommendations: [], nextCursor: null },
+        data: {
+          data: [], pagination: {
+            cursor: {
+              next: "",
+            },
+            totalItems: 0,
+          }
+        },
         status: 200,
         statusText: "OK",
         headers: {},
-        config: {},
+        config: {
+          headers: {} as AxiosRequestHeaders
+        },
       };
 
       mockedGet.mockResolvedValue(mockResponse);
 
-      const filter: RecommendationsFilter = { limit: 10, search: "test" };
+      const filter: RecommendationsFilter = {limit: 10, search: "test"};
       const result = await recommendationService.getRecommendations(filter);
 
       expect(mockedGet).toHaveBeenCalledWith("/recommendations", {
@@ -59,11 +68,13 @@ describe("RecommendationService", () => {
   describe("archive", () => {
     it("should archive a recommendation successfully", async () => {
       const mockResponse: AxiosResponse<SuccessResponse> = {
-        data: { success: true },
+        data: {success: true},
         status: 200,
         statusText: "OK",
         headers: {},
-        config: {},
+        config: {
+          headers: {} as AxiosRequestHeaders
+        },
       };
 
       mockedPost.mockResolvedValue(mockResponse);
@@ -87,11 +98,13 @@ describe("RecommendationService", () => {
   describe("unarchive", () => {
     it("should unarchive a recommendation successfully", async () => {
       const mockResponse: AxiosResponse<SuccessResponse> = {
-        data: { success: true },
+        data: {success: true},
         status: 200,
         statusText: "OK",
         headers: {},
-        config: {},
+        config: {
+          headers: {} as AxiosRequestHeaders
+        },
       };
 
       mockedPost.mockResolvedValue(mockResponse);

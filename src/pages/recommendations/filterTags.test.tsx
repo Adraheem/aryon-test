@@ -1,7 +1,6 @@
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import FilterTags from './filterTags';
-import recommendationService from '../../services/recommendation.service';
-import useFilterContext from '../../context/filterContext/hook';
+import recommendationService from "../../services/recommendation.service";
 
 const mockAvailableTags = {
   classes: ['class1', 'class2'],
@@ -28,6 +27,7 @@ jest.mock('../../context/filterContext/hook', () => () => ({
 
 describe('FilterTags', () => {
   it('renders available tags correctly', async () => {
+    // @ts-ignore
     recommendationService.getRecommendations.mockResolvedValueOnce({
       availableTags: mockAvailableTags,
     });
@@ -41,6 +41,7 @@ describe('FilterTags', () => {
   });
 
   it('filters tags based on search input', async () => {
+    // @ts-ignore
     recommendationService.getRecommendations.mockResolvedValueOnce({
       availableTags: mockAvailableTags,
     });

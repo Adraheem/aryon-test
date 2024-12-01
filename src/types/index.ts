@@ -98,7 +98,7 @@ export interface AvailableTags {
 }
 
 export interface RecommendationsDataResponse extends PaginatedResponse<Recommendation> {
-  availableTags: AvailableTags;
+  availableTags?: AvailableTags;
 }
 
 export interface RecommendationsFilter {
