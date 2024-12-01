@@ -5,7 +5,6 @@ const DashboardPage = React.lazy(() => import('../pages/dashboard'));
 const Layout = React.lazy(() => import('../components/Layout'));
 const RecommendationsPage = React.lazy(() => import('../pages/recommendations'));
 const LoginPage = React.lazy(() => import('../pages/login'));
-const LogoutPage = React.lazy(() => import('../pages/logout'));
 
 interface IProps {
 }
@@ -15,7 +14,6 @@ function RootNavigation(props: IProps) {
     <BrowserRouter>
       <Routes>
         <Route path="login" element={<LoginPage/>}/>
-        <Route path="logout" element={<LogoutPage/>}/>
         <Route element={<Layout/>}>
           <Route path="" element={<DashboardPage/>}/>
           <Route path="recommendations" element={<RecommendationsPage archived={false}/>}/>
