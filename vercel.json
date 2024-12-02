@@ -2,25 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "server/**/*.ts",
+      "src": "server/src/server.ts",
       "use": "@vercel/node"
     },
     {
-      "src": "/frontend/**/*",
+      "src": "/frontend/package.json",
       "use": "@vercel/static-build"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "headers": {
-        "Cache-Control": "s-maxage=1, stale-while-revalidate"
-      }
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/server/src/server.ts"
-    }
-  ]
 }
