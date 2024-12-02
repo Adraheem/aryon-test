@@ -1,5 +1,6 @@
 import jsonServer from 'json-server';
 import jwt from 'jsonwebtoken';
+import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 import {
   Recommendation,
@@ -41,7 +42,11 @@ export const resetDatabase = () => {
 
 // Initialize database with default data
 resetDatabase();
-
+server.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  optionsSuccessStatus: 200,
+}))
 // Middleware
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
@@ -143,7 +148,9 @@ const paginateResults = (
     },
   };
 };
-
+server.get('/', (req: Request, res: Response)=>{
+  return res.status(200).json({message: "Hello there"});
+})
 // Get recommendations with cursor-based pagination, search, and filtering
 server.get('/recommendations', (req: Request, res: Response) => {
   try {
