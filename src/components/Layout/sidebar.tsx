@@ -18,8 +18,8 @@ function Sidebar({isOpen, setIsOpen}: IProps) {
 
   return (
     <aside
-      className={`h-screen fixed left-0 top-0 bottom-0 w-10/12 md:w-[250px] flex flex-col bg-white border-r border-r-slate-200 apply-transition
-      ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+      className={`h-screen fixed left-0 top-0 bottom-0 w-10/12 lg:w-[250px] flex flex-col bg-white border-r border-r-slate-200 apply-transition
+      ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
       <div className="p-6 flex">
         <Link to="/" className="block flex-1">
@@ -27,7 +27,7 @@ function Sidebar({isOpen, setIsOpen}: IProps) {
         </Link>
         <Button
           variant="GHOST"
-          className="md:hidden inline-flex"
+          className="lg:hidden inline-flex"
           onClick={() => setIsOpen(false)}
         >
           <Icon icon="ic:sharp-close" width={24} height={24}/>

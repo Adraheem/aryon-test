@@ -25,12 +25,12 @@ function Layout(props: IProps) {
   }, [isAuthenticated, navigate]);
 
   return (
-    <div className="grid md:grid-cols-[minmax(0,250px)_minmax(0,1fr)]">
+    <div className="grid lg:grid-cols-[minmax(0,250px)_minmax(0,1fr)]">
       <div>
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
       </div>
       <main>
-        <div className="md:hidden inline-flex py-5">
+        <div className="lg:hidden inline-flex py-5">
           <Button
             variant="GHOST"
             onClick={() => setIsOpen(true)}

@@ -8,19 +8,23 @@ This is a React frontend take-home assessment to test my frontend skills.
 
 
 ## Set up
-Install dependencies
+- Install dependencies
 ```shell
 yarn
 ```
-Start the project, the app will start on [http://localhost:3000](http://localhost:3000)
+- Start the server
+```shell
+yarn start:server
+```
+- Start the project, the app will start on [http://localhost:3000](http://localhost:3000)
 ```shell
 yarn start
 ```
-Run tests
+- Run tests
 ```shell
 yarn test
 ```
-Run tests with coverage
+- Run tests with coverage
 ```shell
 yarn test:coverage
 ```
@@ -28,7 +32,7 @@ yarn test:coverage
 ## Developer
 This project is developed by **Raheem Adebayo**, a senior frontend engineer with over 5 years of
 professional experience developing projects in various industries (Social networking, Logistics,
-Entertainment, Fintech and Edutech).
+Entertainment, Fintech and Edtech).
 
 ### My Frontend Stack
 [![My Skills](https://skillicons.dev/icons?i=ts,react,jest,nextjs,css,sass,tailwind,docker,figma&theme=dark)](https://linkedin.com/in/adebayo-raheem)
