@@ -28,8 +28,9 @@
     "yup": "^1.4.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"yarn start:server\"",
-    "start:server": "cd server && npm i && npm run dev",
+    "start": "react-scripts start",
+    "start:dev": "concurrently \"react-scripts start\" \"yarn start:server\"",
+    "start:server": "cd ../server && npm i && npm run dev",
     "start:client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
