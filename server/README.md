@@ -2,6 +2,9 @@
 
 This TypeScript-based mock server implements the API endpoints required for the policy recommendations dashboard.
 
+## Live demo
+[https://aryon-server.vercel.app](https://aryon-server.vercel.app)
+
 ## Setup
 
 1. Install dependencies:
