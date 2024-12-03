@@ -73,7 +73,8 @@
   }
 
   .text-input {
-    @apply apply-transition bg-white dark:bg-transparent border border-slate-200 dark:border-primary-500 focus:border-primary h-12 px-4 py-2 outline-0 w-full block rounded-md focus:ring-4 focus:ring-primary-200;
+    @apply apply-transition bg-white dark:bg-transparent border border-slate-200 dark:border-primary-500 focus:border-primary h-12 px-4 py-2 outline-0 w-full block rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-600;
+    font-size: 18px;
   }
   .text-input.input-error {
     @apply text-red-500 border-red-500 focus:ring-red-200;
