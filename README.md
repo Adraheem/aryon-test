@@ -8,17 +8,17 @@ This is a React frontend take-home assessment to test my frontend skills.
 
 
 ## Set up
+- CD into the `frontend` folder
+```shell
+cd frontend
+```
 - Install dependencies
 ```shell
 yarn
 ```
-- Start the server
+- Start the project, this will start both the frontend and backend applications. The app will start on [http://localhost:3000](http://localhost:3000)
 ```shell
-yarn start:server
-```
-- Start the project, the app will start on [http://localhost:3000](http://localhost:3000)
-```shell
-yarn start
+yarn start:dev
 ```
 - Run tests
 ```shell
