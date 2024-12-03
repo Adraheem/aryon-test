@@ -15,7 +15,10 @@ function RootNavigation(props: IProps) {
       <Routes>
         <Route path="login" element={<LoginPage/>}/>
         <Route element={<Layout/>}>
-          <Route path="" element={<DashboardPage/>}/>
+          <Route path="" element={<DashboardPage title="Dashboard"/>}/>
+          <Route path="policies" element={<DashboardPage title="Policies"/>}/>
+          <Route path="events" element={<DashboardPage title="Events"/>}/>
+          <Route path="waivers" element={<DashboardPage title="Waivers"/>}/>
           <Route path="recommendations" element={<RecommendationsPage archived={false}/>}/>
           <Route path="recommendations/archive" element={<RecommendationsPage archived={true}/>}/>
         </Route>

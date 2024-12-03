@@ -35,7 +35,7 @@ function RecommendationsPage({archived}: IProps) {
       retry: 0,
       refetchInterval: false,
       refetchOnWindowFocus: false,
-      getNextPageParam: (lastPage) => lastPage.pagination.cursor.next ?? undefined,
+      getNextPageParam: (lastPage) => lastPage?.pagination?.cursor?.next ?? undefined,
       initialPageParam: "",
     }
   );
@@ -50,6 +50,8 @@ function RecommendationsPage({archived}: IProps) {
   const closeModal = () => {
     setActiveRecommendation(undefined);
   }
+
+  console.log("hasNextPage:", hasNextPage);
 
   return (
     <Container>
@@ -89,27 +91,26 @@ function RecommendationsPage({archived}: IProps) {
           </div>
         ) : (
           <InfiniteScroll
-            dataLength={data?.pages[0]?.pagination.totalItems ?? 0}
+            dataLength={flatData.length}
             next={fetchNextPage}
             hasMore={hasNextPage ?? false}
             scrollThreshold="600px"
-            loader={<p className="small text-center mt-8 text-slate-500">Loading...</p>}
+            loader={<p className="small text-center text-slate-500">Loading...</p>}
             endMessage={
-              <p className="small text-center mt-8 text-slate-500">No more recommendations</p>
+              <p className="small text-center text-slate-500">No more recommendations</p>
             }
+            className="grid gap-4"
           >
-            <div className="grid gap-4">
-              {
-                flatData.map(recommendation => (
-                  <RecommendationCard
-                    key={recommendation.recommendationId}
-                    data={recommendation}
-                    onClick={() => setActiveRecommendation(recommendation)}
-                    archived={archived}
-                  />
-                ))
-              }
-            </div>
+            {
+              flatData.map(recommendation => (
+                <RecommendationCard
+                  key={recommendation.recommendationId}
+                  data={recommendation}
+                  onClick={() => setActiveRecommendation(recommendation)}
+                  archived={archived}
+                />
+              ))
+            }
           </InfiniteScroll>
         )
       }

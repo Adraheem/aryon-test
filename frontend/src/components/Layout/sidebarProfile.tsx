@@ -5,10 +5,10 @@ interface IProps {
 
 function SidebarProfile(props: IProps) {
   return (
-    <div className="flex gap-3 p-4">
+    <div className="flex gap-3 p-4 items-center">
       <div>
         <div
-          className="h-full rounded-lg aspect-square flex items-center justify-center text-center bg-primary-300">
+          className="h-10 w-10 rounded-lg flex items-center justify-center text-center bg-primary-300 text-primary-900">
           <p>YL</p>
         </div>
       </div>

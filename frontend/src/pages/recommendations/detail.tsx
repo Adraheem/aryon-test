@@ -38,7 +38,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
   if (!data) return null;
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-[100dvh]">
       <div className="p-5 md:p-10 flex-1 overflow-y-auto">
         <div className="flex gap-4 items-start md:items-center">
           <div>
