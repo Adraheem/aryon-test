@@ -1,4 +1,5 @@
 import React, {ButtonHTMLAttributes, useMemo} from 'react';
+import {Icon} from "@iconify/react";
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "PRIMARY" | "GHOST";
@@ -11,11 +12,13 @@ const Button = React.forwardRef<HTMLButtonElement, IProps>(
      className,
      isLoading,
      disabled,
+     children,
      ...props
    }, ref) => {
     const variantClassName = useMemo(() => {
       if (isLoading || disabled) {
-        return "bg-slate-200 text-slate-500 cursor-not-allowed"
+        return "bg-slate-200 dark:bg-opacity-40 text-slate-500 dark:text-slate-300" +
+          " cursor-not-allowed"
       }
 
       switch (variant) {
@@ -33,7 +36,9 @@ const Button = React.forwardRef<HTMLButtonElement, IProps>(
         disabled={disabled || isLoading}
         className={`btn ${variantClassName} ${className}`}
         {...props}
-      />
+      >
+        {isLoading ? <Icon icon="eos-icons:three-dots-loading" width={24} height={24} /> : children}
+      </button>
     );
   })
 

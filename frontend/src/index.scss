@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply bg-slate-100;
+    @apply bg-slate-100 dark:bg-primary-950 dark:text-primary-50;
     font-size: 14px;
   }
 
@@ -43,6 +43,10 @@
   small, .small {
     font-size: 0.850rem;
   }
+
+  hr {
+    @apply border-slate-200 dark:border-slate-600
+  }
 }
 
 @layer components {
@@ -51,7 +55,7 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center text-center gap-2 body px-6 py-2 apply-transition rounded-lg;
+    @apply inline-flex items-center justify-center text-center gap-2 body px-6 py-1 h-12 apply-transition rounded-lg;
   }
 
   .slide-in {
@@ -69,7 +73,7 @@
   }
 
   .text-input {
-    @apply apply-transition bg-white border border-slate-200 focus:border-primary h-12 px-4 py-2 outline-0 w-full block rounded-md focus:ring-4 focus:ring-primary-200;
+    @apply apply-transition bg-white dark:bg-transparent border border-slate-200 dark:border-primary-500 focus:border-primary h-12 px-4 py-2 outline-0 w-full block rounded-md focus:ring-4 focus:ring-primary-200;
   }
   .text-input.input-error {
     @apply text-red-500 border-red-500 focus:ring-red-200;

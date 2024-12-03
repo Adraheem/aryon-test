@@ -53,7 +53,7 @@ function LoginPage(props: IProps) {
   return (
     <Container>
       <div
-        className="bg-white w-full max-w-xl p-8 mx-auto rounded-lg shadow-xl border border-slate-200"
+        className="bg-white dark:bg-primary-900 w-full max-w-xl p-8 mx-auto rounded-lg shadow-xl border border-slate-200 dark:border-primary-800"
       >
         <Logo/>
 

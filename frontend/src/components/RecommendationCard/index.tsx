@@ -15,7 +15,7 @@ function RecommendationCard({onClick, archived, data}: IProps) {
   return (
     <button
       onClick={onClick}
-      className="text-left flex gap-4 shadow hover:shadow-xl apply-transition bg-white rounded-xl overflow-hidden items-stretch"
+      className="text-left flex gap-4 shadow hover:shadow-xl apply-transition bg-white dark:bg-primary-900 dark:text-slate-200 rounded-xl overflow-hidden items-stretch"
     >
       <div>
         <div
@@ -27,7 +27,7 @@ function RecommendationCard({onClick, archived, data}: IProps) {
       <div className="flex-1 py-4">
         <div className="flex items-center">
           <h5 className="font-semibold flex-1 line-clamp-2 h6 md:h5">{data.title}</h5>
-          <div className="flex flex-wrap gap-2 text-slate-500">
+          <div className="flex flex-wrap gap-2 text-slate-500 dark:text-slate-400">
             {
               data.provider.map((provider, idx) => (
                 <ProviderIcon key={idx} cloudProvider={provider}/>
@@ -47,9 +47,9 @@ function RecommendationCard({onClick, archived, data}: IProps) {
         </div>
       </div>
       <div className="p-3">
-        <div className="bg-zinc-100 rounded-md text-center p-3 md:p-5 h-full flex flex-col justify-center max-w-[150px] md:max-w-none">
+        <div className="bg-zinc-100 dark:bg-primary-800 rounded-md text-center p-3 md:p-5 h-full flex flex-col justify-center max-w-[150px] md:max-w-none">
           <h6 className="font-semibold p md:h6">Impact assessment</h6>
-          <p className="text-slate-500">~{data.impactAssessment.totalViolations} violations /
+          <p className="text-slate-500 dark:text-slate-400">~{data.impactAssessment.totalViolations} violations /
             month</p>
           <hr className='my-3'/>
           <div className="flex flex-wrap flex-col md:flex-row gap-3 justify-center items-center">

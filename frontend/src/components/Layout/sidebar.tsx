@@ -18,7 +18,7 @@ function Sidebar({isOpen, setIsOpen}: IProps) {
 
   return (
     <aside
-      className={`h-screen fixed left-0 top-0 bottom-0 w-10/12 lg:w-[250px] flex flex-col bg-white border-r border-r-slate-200 apply-transition
+      className={`h-screen fixed left-0 top-0 z-50 bottom-0 w-10/12 lg:w-[250px] flex flex-col bg-white dark:bg-primary-900 border-r border-r-slate-200 dark:border-r-primary-800 apply-transition
       ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
       <div className="p-6 flex">

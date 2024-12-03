@@ -56,7 +56,7 @@ function FilterTags(props: IProps) {
   }
 
   return (
-    <div className="bg-white drop-shadow-sm p-4 border border-slate-200 rounded-md">
+    <div className="bg-white dark:bg-primary-900 drop-shadow-sm p-4 border border-slate-200 dark:border-primary-700 rounded-md">
       <p className="small">Filter ({checked.length} applied)</p>
       <div className="my-2">
         <TextInput
@@ -71,7 +71,7 @@ function FilterTags(props: IProps) {
           <div className="max-h-60 overflow-y-auto">
             {Object.entries(filteredAvailableTags).map((entry: [string, string[]]) => (
               <div key={`entry-${entry[0]}`}>
-                <p className="capitalize py-2 px-4 bg-slate-200 my-2">{entry[0]}</p>
+                <p className="capitalize py-2 px-4 bg-slate-200 dark:bg-primary-800 my-2">{entry[0]}</p>
                 {
                   entry[1].map((tag, index) => (
                     <label key={`tag-${entry[0]}-${index}`} data-testid={tag} className="block">

@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthContextProvider from "./authContext";
 import FilterContextProvider from "./filterContext";
+import ThemeContextProvider from "./themeContext";
 
 interface IProps {
   children: React.ReactNode;
@@ -9,9 +10,11 @@ interface IProps {
 function Providers({children}: IProps) {
   return (
     <AuthContextProvider>
-      <FilterContextProvider>
-        {children}
-      </FilterContextProvider>
+      <ThemeContextProvider>
+        <FilterContextProvider>
+          {children}
+        </FilterContextProvider>
+      </ThemeContextProvider>
     </AuthContextProvider>
   );
 }

@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import Badge from "../../components/Badge";
 import {Icon} from "@iconify/react";
 import Button from "../../components/Button";
@@ -16,16 +16,21 @@ interface IProps {
 }
 
 function RecommendationDetail({data, onClose, archived}: IProps) {
+  const [toggling, setToggling] = useState(false);
+
   const toggleArchive = useCallback(() => {
     if (!data?.recommendationId) return;
 
+    setToggling(true);
     const action = archived ? recommendationService.unarchive : recommendationService.archive;
     action(data?.recommendationId)
       .then(res => {
         toast.success(archived ? "Post unarchived successfully" : "Post archived successfully");
+        setToggling(false)
         onClose && onClose();
       })
       .catch(err => {
+        setToggling(false);
         toast.error(err?.response?.data?.error ?? err?.message ?? "An error occurred")
       })
   }, [archived, data?.recommendationId, onClose]);
@@ -115,7 +120,8 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
             <h6 className="font-semibold">Impact Assessment</h6>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="border border-slate-200 bg-slate-100 rounded-lg p-5">
+            <div
+              className="border border-slate-200 dark:border-primary-800 dark:bg-primary-900 bg-slate-100 rounded-lg p-5">
               <div className="flex items-center justify-between">
                 <p>Overall</p>
                 <Icon icon="ph:seal-warning" width={20} height={20}/>
@@ -125,7 +131,8 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
                 <h6>{data.totalHistoricalViolations}</h6>
               </div>
             </div>
-            <div className="border border-slate-200 bg-slate-100 rounded-lg p-5">
+            <div
+              className="border border-slate-200 dark:border-primary-800 dark:bg-primary-900 bg-slate-100 rounded-lg p-5">
               <div className="flex items-center justify-between">
                 <p>Most impacted scope</p>
                 <Icon icon="ph:seal-warning" width={20} height={20}/>
@@ -134,7 +141,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
                 <div>
                   <h6>{data.impactAssessment.mostImpactedScope.name}</h6>
                   <p
-                    className="leading-none font-normal small text-slate-500">({data.impactAssessment.mostImpactedScope.type})</p>
+                    className="leading-none font-normal small text-slate-500 dark:text-slate-400">({data.impactAssessment.mostImpactedScope.type})</p>
                 </div>
                 <h6>{data.impactAssessment.mostImpactedScope.count}</h6>
               </div>
@@ -168,7 +175,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
       <hr/>
 
       <div className="flex justify-end items-center gap-4 p-5">
-        <Button variant="GHOST" type="button" onClick={toggleArchive}>
+        <Button variant="GHOST" type="button" onClick={toggleArchive} isLoading={toggling}>
           <Icon icon="f7:archivebox" width={20} height={20}/>
           <span>{archived ? "Unarchive" : "Archive"}</span>
         </Button>

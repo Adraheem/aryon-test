@@ -24,8 +24,8 @@ function NavItem({title, href = "#", icon, onClick}: IProps) {
           }
         }}
         className={`flex gap-2 items-center p-2 rounded-md ${active ?
-          "bg-primary-100 text-primary" :
-          "text-slate-600 hover:bg-primary-100 hover:text-primary"}`}
+          "bg-primary-100 dark:bg-primary-600 text-primary dark:text-primary-50" :
+          `text-slate-600 dark:text-primary-300 hover:bg-primary-100 hover:text-primary dark:hover:bg-primary-800 dark:hover:text-primary-300`}`}
       >
         <Icon icon={icon} width={22} height={22}/>
         <p>{title}</p>
