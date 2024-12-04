@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import Tippy from "@tippyjs/react";
 import FilterTags from "./filterTags";
 import {Input} from "../../components/ui/input";
+import {Popover, PopoverContent, PopoverTrigger,} from "../../components/ui/popover"
 import {Button} from "../../components/ui/button";
+
 
 interface IProps {
   setDebouncedTerm: (e: string) => void
@@ -29,18 +30,10 @@ function RecommendationsFilter({setDebouncedTerm}: IProps) {
         />
       </div>
       <div>
-        <Tippy
-          content={<FilterTags/>}
-          theme="dark"
-          placement="bottom-start"
-          role="dropdown"
-          className=""
-          interactive={true}
-          animation="shift-toward"
-          trigger="click"
-        >
-          <Button variant="default">Filter</Button>
-        </Tippy>
+        <Popover>
+          <PopoverTrigger asChild><Button variant="default">Filter</Button></PopoverTrigger>
+          <PopoverContent><FilterTags/></PopoverContent>
+        </Popover>
       </div>
     </div>
   );

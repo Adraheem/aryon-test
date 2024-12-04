@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import Badge from "../../components/Badge";
+import {Badge} from "../../components/ui/badge";
 import {Icon} from "@iconify/react";
 import ValueScore from "../../components/ValueScore";
 import {Recommendation} from "../../types";
@@ -76,7 +76,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
         <div className="flex gap-2 flex-wrap mt-4">
           {
             data.frameworks.map((framework, idx) => (
-              <Badge key={`framework-${idx}`} text={framework.name}/>
+              <Badge key={`framework-${idx}`} variant="secondary">{framework.name}</Badge>
             ))
           }
         </div>
@@ -95,7 +95,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
           <div className="flex gap-2 flex-wrap mt-2">
             {
               data.affectedResources.map((resource, idx) => (
-                <Badge key={`resource-${idx}`} text={resource.name}/>
+                <Badge key={`resource-${idx}`} variant="secondary">{resource.name}</Badge>
               ))
             }
           </div>
@@ -109,7 +109,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
           <div className="flex gap-2 flex-wrap mt-2">
             {
               data.reasons.map((reason, idx) => (
-                <Badge key={`reason-${idx}`} text={reason}/>
+                <Badge key={`reason-${idx}`} variant='secondary'>{reason}</Badge>
               ))
             }
           </div>

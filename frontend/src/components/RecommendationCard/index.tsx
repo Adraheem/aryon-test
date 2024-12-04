@@ -1,9 +1,9 @@
 import React from 'react';
 import {Icon} from "@iconify/react";
-import Badge from "../Badge";
 import ValueScore from "../ValueScore";
 import {Recommendation} from "../../types";
 import ProviderIcon from "../ProviderIcon";
+import {Badge} from "../ui/badge";
 
 interface IProps {
   onClick?: () => void
@@ -15,7 +15,7 @@ function RecommendationCard({onClick, archived, data}: IProps) {
   return (
     <button
       onClick={onClick}
-      className="text-left flex gap-4 shadow hover:shadow-xl apply-transition bg-background border border-border dark:text-slate-200 rounded-xl overflow-hidden items-stretch"
+      className="text-left flex gap-4 shadow hover:shadow-xl apply-transition bg-background dark:hover:bg-primary/10 border border-border dark:text-slate-200 rounded-xl overflow-hidden items-stretch"
     >
       <div>
         <div
@@ -42,7 +42,7 @@ function RecommendationCard({onClick, archived, data}: IProps) {
           <div className="flex gap-2 flex-wrap mt-4">
             {
               data.frameworks.map((framework, idx) => (
-                <Badge key={`framework-${idx}`} text={framework.name}/>
+                <Badge key={`framework-${idx}`} variant="secondary">{framework.name}</Badge>
               ))
             }
           </div>
