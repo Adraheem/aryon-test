@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import Container from "../../components/Container";
-import TextInput from "../../components/TextInput";
-import Button from "../../components/Button";
+// import Button from "../../components/Button";
 import {ILoginRequest} from "../../types";
 import authService from "../../services/auth.service";
 import useAuthContext from "../../context/authContext/hook";
@@ -11,6 +10,17 @@ import Logo from "../../components/Logo";
 import {useForm} from "react-hook-form";
 import {z, ZodType} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {Input} from "../../components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "../../components/ui/form";
+import {Button} from "../../components/ui/button";
+import {Loader2} from "lucide-react";
 
 const LoginSchema: ZodType<ILoginRequest> = z.object({
   username: z.string().min(1, "Username is required"),
@@ -19,12 +29,7 @@ const LoginSchema: ZodType<ILoginRequest> = z.object({
 
 function LoginPage() {
   const {isAuthenticated, login} = useAuthContext();
-  const {
-    register,
-    handleSubmit,
-    formState: {errors, isSubmitting, isValid},
-    setError
-  } = useForm<ILoginRequest>({
+  const form = useForm<ILoginRequest>({
     resolver: zodResolver(LoginSchema),
     mode: "all",
     reValidateMode: "onChange"
@@ -43,7 +48,7 @@ function LoginPage() {
       login(res.token);
     } catch (err: any) {
       if (err?.response?.data?.error) {
-        setError("username", {message: err.response.data.error});
+        form.setError("username", {message: err.response.data.error});
       } else {
         toast.error(err.message ?? "An error occurred")
       }
@@ -58,33 +63,64 @@ function LoginPage() {
         <Logo/>
 
         <h3 className="leading-none mt-6">Login</h3>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-5 mt-8">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Username" {...field} />
+                  </FormControl>
+                  <FormMessage/>
+                </FormItem>
+              )}
+            />
 
-        <form onSubmit={handleSubmit(onSubmit)} className="grid gap-5 mt-8">
-          <TextInput
-            error={!!errors.username && (errors.username.message as string)}
-            label="Username"
-            placeholder="Username"
-            {...register("username")}
-          />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Password" type="password" {...field} />
+                  </FormControl>
+                  <FormMessage/>
+                </FormItem>
+              )}
+            />
+            {/*<Input*/}
+            {/*  error={!!errors.username && (errors.username.message as string)}*/}
+            {/*  label="Username"*/}
+            {/*  placeholder="Username"*/}
+            {/*  {...register("username")}*/}
+            {/*/>*/}
 
-          <TextInput
-            error={!!errors.password && (errors.password.message as string)}
-            label="Password"
-            placeholder="Password"
-            type="password"
-            {...register("password")}
-          />
+            {/*<Input*/}
+            {/*  error={!!errors.password && (errors.password.message as string)}*/}
+            {/*  label="Password"*/}
+            {/*  placeholder="Password"*/}
+            {/*  type="password"*/}
+            {/*  {...register("password")}*/}
+            {/*/>*/}
 
-          <div>
-            <Button
-              isLoading={isSubmitting}
-              disabled={isSubmitting || !isValid}
-              type="submit"
-            >
-              Login
-            </Button>
-          </div>
-        </form>
+            <div>
+              <Button
+                type="submit"
+                size="lg"
+                disabled={form.formState.isSubmitting || !form.formState.isValid}
+              >
+                {form.formState.isSubmitting && (
+                  <Loader2 className="animate-spin"/>
+                )}
+                Login
+              </Button>
+            </div>
+          </form>
+        </Form>
       </div>
     </Container>
   );

@@ -1,13 +1,13 @@
 import React, {useCallback, useState} from 'react';
 import Badge from "../../components/Badge";
 import {Icon} from "@iconify/react";
-import Button from "../../components/Button";
 import ValueScore from "../../components/ValueScore";
 import {Recommendation} from "../../types";
 import ProviderIcon from "../../components/ProviderIcon";
 import recommendationService from "../../services/recommendation.service";
 import toast from "react-hot-toast";
 import {providers} from "../../assets/data";
+import {Button} from "../../components/ui/button";
 
 interface IProps {
   data?: Recommendation;
@@ -67,7 +67,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
             </div>
           </div>
           <div className="self-start">
-            <Button variant="GHOST" onClick={onClose}>
+            <Button onClick={onClose}>
               <Icon icon="ic:sharp-close" width={24} height={24}/>
             </Button>
           </div>
@@ -175,7 +175,7 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
       <hr/>
 
       <div className="flex justify-end items-center gap-4 p-5">
-        <Button variant="GHOST" type="button" onClick={toggleArchive} isLoading={toggling}>
+        <Button type="button" onClick={toggleArchive}>
           <Icon icon="f7:archivebox" width={20} height={20}/>
           <span>{archived ? "Unarchive" : "Archive"}</span>
         </Button>

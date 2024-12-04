@@ -3,6 +3,7 @@ import TextInput from "../../components/TextInput";
 import Tippy from "@tippyjs/react";
 import Button from "../../components/Button";
 import FilterTags from "./filterTags";
+import {Input} from "../../components/ui/input";
 
 interface IProps {
   setDebouncedTerm: (e: string) => void
@@ -22,7 +23,7 @@ function RecommendationsFilter({setDebouncedTerm}: IProps) {
   return (
     <div className="flex-1 flex gap-4 items-center">
       <div className="w-full max-w-sm">
-        <TextInput
+        <Input
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder="Search"

@@ -5,13 +5,13 @@ import Modal from "../../components/Modal";
 import RecommendationDetail from "./detail";
 import recommendationService from "../../services/recommendation.service";
 import {Recommendation, RecommendationsDataResponse} from "../../types";
-import Button from "../../components/Button";
 import {Icon} from "@iconify/react";
 import {Link} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {InfiniteData, useInfiniteQuery} from "@tanstack/react-query";
 import RecommendationsFilter from "./filter";
 import useFilterContext from "../../context/filterContext/hook";
+import {Button} from "../../components/ui/button";
 
 interface IProps {
   archived?: boolean;
@@ -61,7 +61,7 @@ function RecommendationsPage({archived}: IProps) {
           !archived && (
             <div className="ml-auto">
               <Link to="/recommendations/archive">
-                <Button variant="GHOST" type="button">
+                <Button type="button">
                   <Icon icon="f7:archivebox" width={20} height={20}/>
                   <span>Archive</span>
                 </Button>
