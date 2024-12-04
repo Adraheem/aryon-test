@@ -2,9 +2,9 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {AvailableTags} from "../../types";
 import recommendationService from "../../services/recommendation.service";
 import utils from "../../utils";
-import Button from "../../components/Button";
 import useFilterContext from "../../context/filterContext/hook";
-import TextInput from "../../components/TextInput";
+import {Input} from "../../components/ui/input";
+import {Button} from "../../components/ui/button";
 
 interface IProps {
 }
@@ -56,10 +56,10 @@ function FilterTags(props: IProps) {
   }
 
   return (
-    <div className="bg-white dark:bg-primary-900 drop-shadow-sm p-4 border border-slate-200 dark:border-primary-700 rounded-md">
+    <div className="bg-background text-foreground drop-shadow-sm p-4 border border-border rounded-md">
       <p className="small">Filter ({checked.length} applied)</p>
       <div className="my-2">
-        <TextInput
+        <Input
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder='Search tags'
@@ -94,7 +94,7 @@ function FilterTags(props: IProps) {
       <hr className="my-2"/>
       <Button
         className="w-full"
-        variant='GHOST'
+        variant="ghost"
         onClick={() => setChecked([])}
       >
         Clear filters

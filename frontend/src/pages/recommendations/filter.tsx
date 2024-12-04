@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import TextInput from "../../components/TextInput";
 import Tippy from "@tippyjs/react";
-import Button from "../../components/Button";
 import FilterTags from "./filterTags";
 import {Input} from "../../components/ui/input";
+import {Button} from "../../components/ui/button";
 
 interface IProps {
   setDebouncedTerm: (e: string) => void
@@ -32,7 +31,7 @@ function RecommendationsFilter({setDebouncedTerm}: IProps) {
       <div>
         <Tippy
           content={<FilterTags/>}
-          theme="light"
+          theme="dark"
           placement="bottom-start"
           role="dropdown"
           className=""
@@ -40,7 +39,7 @@ function RecommendationsFilter({setDebouncedTerm}: IProps) {
           animation="shift-toward"
           trigger="click"
         >
-          <Button>Filter</Button>
+          <Button variant="default">Filter</Button>
         </Tippy>
       </div>
     </div>

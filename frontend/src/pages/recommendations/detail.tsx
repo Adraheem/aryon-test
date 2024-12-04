@@ -8,6 +8,7 @@ import recommendationService from "../../services/recommendation.service";
 import toast from "react-hot-toast";
 import {providers} from "../../assets/data";
 import {Button} from "../../components/ui/button";
+import {Loader2} from "lucide-react";
 
 interface IProps {
   data?: Recommendation;
@@ -67,8 +68,8 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
             </div>
           </div>
           <div className="self-start">
-            <Button onClick={onClose}>
-              <Icon icon="ic:sharp-close" width={24} height={24}/>
+            <Button onClick={onClose} variant="ghost" size="icon">
+              <Icon icon="ic:sharp-close" width={32} height={32}/>
             </Button>
           </div>
         </div>
@@ -175,8 +176,12 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
       <hr/>
 
       <div className="flex justify-end items-center gap-4 p-5">
-        <Button type="button" onClick={toggleArchive}>
-          <Icon icon="f7:archivebox" width={20} height={20}/>
+        <Button type="button" onClick={toggleArchive} variant="outline" disabled={toggling}>
+          {toggling ? (
+            <Loader2 className="animate-spin"/>
+          ) : (
+            <Icon icon="f7:archivebox" width={20} height={20}/>
+          )}
           <span>{archived ? "Unarchive" : "Archive"}</span>
         </Button>
         <Button>Configure Policy</Button>

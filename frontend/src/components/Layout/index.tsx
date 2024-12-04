@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import Sidebar from "./sidebar";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
-import useAuthContext from "../../context/authContext/hook";
 import {Icon} from "@iconify/react";
 import Button from "../Button";
 import ReactSwitch from "react-switch";
 import useThemeContext from "../../context/themeContext/hook";
+import useAuthStore from "../../stores/store";
 
 interface IProps {
 }
 
 function Layout(props: IProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const {isAuthenticated} = useAuthContext();
+  const {token} = useAuthStore();
   const {isDarkMode, toggleDarkMode} = useThemeContext();
   const navigate = useNavigate();
   const {pathname} = useLocation();
@@ -22,10 +22,10 @@ function Layout(props: IProps) {
   }, [pathname]);
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!token) {
       navigate("/login", {replace: true});
     }
-  }, [isAuthenticated, navigate]);
+  }, [token, navigate]);
 
   return (
     <div className="grid lg:grid-cols-[minmax(0,250px)_minmax(0,1fr)]">

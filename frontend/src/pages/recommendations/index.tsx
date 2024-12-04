@@ -51,8 +51,6 @@ function RecommendationsPage({archived}: IProps) {
     setActiveRecommendation(undefined);
   }
 
-  console.log("hasNextPage:", hasNextPage);
-
   return (
     <Container>
       <div className="flex items-center mb-10">

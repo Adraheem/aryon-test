@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 import Container from "../../components/Container";
-// import Button from "../../components/Button";
 import {ILoginRequest} from "../../types";
 import authService from "../../services/auth.service";
-import useAuthContext from "../../context/authContext/hook";
 import {useNavigate} from "react-router-dom";
 import toast from "react-hot-toast";
 import Logo from "../../components/Logo";
@@ -21,6 +19,7 @@ import {
 } from "../../components/ui/form";
 import {Button} from "../../components/ui/button";
 import {Loader2} from "lucide-react";
+import useAuthStore from "../../stores/store";
 
 const LoginSchema: ZodType<ILoginRequest> = z.object({
   username: z.string().min(1, "Username is required"),
@@ -28,7 +27,8 @@ const LoginSchema: ZodType<ILoginRequest> = z.object({
 });
 
 function LoginPage() {
-  const {isAuthenticated, login} = useAuthContext();
+  // const {isAuthenticated, login} = useAuthContext();
+  const {login, token} = useAuthStore();
   const form = useForm<ILoginRequest>({
     resolver: zodResolver(LoginSchema),
     mode: "all",
@@ -37,10 +37,10 @@ function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!!token) {
       navigate("/", {replace: true});
     }
-  }, [isAuthenticated, navigate]);
+  }, [token, navigate]);
 
   const onSubmit = async (values: ILoginRequest) => {
     try {
@@ -58,7 +58,7 @@ function LoginPage() {
   return (
     <Container>
       <div
-        className="bg-white dark:bg-primary-900 w-full max-w-xl p-8 mx-auto rounded-lg shadow-xl border border-slate-200 dark:border-primary-800"
+        className="bg-background w-full max-w-xl p-8 mx-auto rounded-lg shadow-xl border border-border"
       >
         <Logo/>
 
@@ -92,21 +92,6 @@ function LoginPage() {
                 </FormItem>
               )}
             />
-            {/*<Input*/}
-            {/*  error={!!errors.username && (errors.username.message as string)}*/}
-            {/*  label="Username"*/}
-            {/*  placeholder="Username"*/}
-            {/*  {...register("username")}*/}
-            {/*/>*/}
-
-            {/*<Input*/}
-            {/*  error={!!errors.password && (errors.password.message as string)}*/}
-            {/*  label="Password"*/}
-            {/*  placeholder="Password"*/}
-            {/*  type="password"*/}
-            {/*  {...register("password")}*/}
-            {/*/>*/}
-
             <div>
               <Button
                 type="submit"

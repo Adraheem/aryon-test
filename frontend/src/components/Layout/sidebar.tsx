@@ -6,7 +6,7 @@ import {navItems} from "../../assets/data";
 import Logo from "../Logo";
 import Button from "../Button";
 import {Icon} from "@iconify/react";
-import useAuthContext from "../../context/authContext/hook";
+import useAuthStore from "../../stores/store";
 
 interface IProps {
   isOpen: boolean;
@@ -14,11 +14,11 @@ interface IProps {
 }
 
 function Sidebar({isOpen, setIsOpen}: IProps) {
-  const {logout} = useAuthContext();
+  const {logout} = useAuthStore();
 
   return (
     <aside
-      className={`h-[100dvh] fixed left-0 top-0 z-50 bottom-0 w-10/12 lg:w-[250px] flex flex-col bg-white dark:bg-primary-900 border-r border-r-slate-200 dark:border-r-primary-800 apply-transition
+      className={`h-[100dvh] fixed left-0 top-0 z-50 bottom-0 w-10/12 lg:w-[250px] flex flex-col bg-background border-r border-border dark:border-r-primary-800 apply-transition
       ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
       <div className="p-6 flex">

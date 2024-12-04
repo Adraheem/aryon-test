@@ -15,7 +15,7 @@ function RecommendationCard({onClick, archived, data}: IProps) {
   return (
     <button
       onClick={onClick}
-      className="text-left flex gap-4 shadow hover:shadow-xl apply-transition bg-white dark:bg-primary-900 dark:text-slate-200 rounded-xl overflow-hidden items-stretch"
+      className="text-left flex gap-4 shadow hover:shadow-xl apply-transition bg-background border border-border dark:text-slate-200 rounded-xl overflow-hidden items-stretch"
     >
       <div>
         <div
@@ -49,7 +49,7 @@ function RecommendationCard({onClick, archived, data}: IProps) {
         </div>
         <div className="p-3 pl-0 lg:pl-3 pt-0 lg:pt-3 w-full lg:w-auto">
           <div
-            className="bg-zinc-100 dark:bg-primary-800 rounded-md text-left lg:text-center p-3 md:p-5 h-full flex flex-row lg:flex-col justify-between lg:justify-center md:max-w-none">
+            className="bg-zinc-100 dark:bg-primary-950 rounded-md text-left lg:text-center p-3 md:p-5 h-full flex flex-row lg:flex-col justify-between lg:justify-center md:max-w-none">
             <div>
               <h6 className="font-semibold p lg:h6">Impact assessment</h6>
               <p
