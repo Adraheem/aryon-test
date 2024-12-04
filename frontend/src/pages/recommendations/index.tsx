@@ -8,7 +8,7 @@ import {Recommendation, RecommendationsDataResponse} from "../../types";
 import {Icon} from "@iconify/react";
 import {Link} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {InfiniteData, useInfiniteQuery} from "@tanstack/react-query";
+import {InfiniteData, useInfiniteQuery, useQueryClient} from "@tanstack/react-query";
 import RecommendationsFilter from "./filter";
 import useFilterContext from "../../context/filterContext/hook";
 import {Button} from "../../components/ui/button";
@@ -21,11 +21,14 @@ function RecommendationsPage({archived}: IProps) {
   const [activeRecommendation, setActiveRecommendation] = useState<Recommendation | undefined>();
   const [debouncedTerm, setDebouncedTerm] = useState("");
   const {tags} = useFilterContext();
+  const queryClient = useQueryClient();
+
+  const cacheKey = useMemo(() => ["recommendations", (archived ? "archived" : "unarchived"), debouncedTerm, JSON.stringify(tags)], [archived, debouncedTerm, tags]);
 
   const {
     data, fetchNextPage, hasNextPage, isLoading
   } = useInfiniteQuery<RecommendationsDataResponse, Error, InfiniteData<RecommendationsDataResponse, unknown>, string[], string>({
-      queryKey: ["recommendations", (archived ? "archived" : "unarchived"), debouncedTerm, JSON.stringify(tags)],
+      queryKey: cacheKey,
       queryFn: ({pageParam}) => recommendationService.getRecommendations({
         archive: archived,
         cursor: pageParam,
@@ -39,6 +42,19 @@ function RecommendationsPage({archived}: IProps) {
       initialPageParam: "",
     }
   );
+
+  const handleRemoveItem = (id: string) => {
+    queryClient.setQueryData<InfiniteData<RecommendationsDataResponse>>(cacheKey, (oldData) => {
+      if (!oldData) return oldData;
+      return {
+        ...oldData,
+        pages: oldData.pages.map((page) => ({
+          ...page,
+          data: page.data.filter((item) => item.recommendationId !== id),
+        })),
+      };
+    });
+  };
 
   const flatData = useMemo(() => {
     if (data) {
@@ -114,7 +130,12 @@ function RecommendationsPage({archived}: IProps) {
       }
 
       <Modal isOpen={!!activeRecommendation} onClose={closeModal}>
-        <RecommendationDetail data={activeRecommendation} onClose={closeModal} archived={archived}/>
+        <RecommendationDetail
+          data={activeRecommendation}
+          onClose={closeModal}
+          archived={archived}
+          handleRemoveItem={handleRemoveItem}
+        />
       </Modal>
     </Container>
   );

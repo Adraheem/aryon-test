@@ -14,9 +14,10 @@ interface IProps {
   data?: Recommendation;
   onClose?: () => void;
   archived?: boolean;
+  handleRemoveItem?: (id: string) => void;
 }
 
-function RecommendationDetail({data, onClose, archived}: IProps) {
+function RecommendationDetail({data, onClose, archived, handleRemoveItem}: IProps) {
   const [toggling, setToggling] = useState(false);
 
   const toggleArchive = useCallback(() => {
@@ -24,9 +25,10 @@ function RecommendationDetail({data, onClose, archived}: IProps) {
 
     setToggling(true);
     const action = archived ? recommendationService.unarchive : recommendationService.archive;
-    action(data?.recommendationId)
+    action(data.recommendationId)
       .then(res => {
         toast.success(archived ? "Post unarchived successfully" : "Post archived successfully");
+        !!handleRemoveItem && handleRemoveItem(data.recommendationId)
         setToggling(false)
         onClose && onClose();
       })
