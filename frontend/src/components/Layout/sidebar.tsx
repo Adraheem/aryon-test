@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 import SidebarProfile from "./sidebarProfile";
 import {navItems} from "../../assets/data";
 import Logo from "../Logo";
-import Button from "../Button";
 import {Icon} from "@iconify/react";
 import useAuthStore from "../../stores/store";
+import {Button} from "../ui/button";
 
 interface IProps {
   isOpen: boolean;
@@ -26,7 +26,8 @@ function Sidebar({isOpen, setIsOpen}: IProps) {
           <Logo/>
         </Link>
         <Button
-          variant="GHOST"
+          variant="ghost"
+          size="icon"
           className="lg:hidden inline-flex"
           onClick={() => setIsOpen(false)}
         >

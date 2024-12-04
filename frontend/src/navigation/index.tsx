@@ -6,10 +6,7 @@ const Layout = React.lazy(() => import('../components/Layout'));
 const RecommendationsPage = React.lazy(() => import('../pages/recommendations'));
 const LoginPage = React.lazy(() => import('../pages/login'));
 
-interface IProps {
-}
-
-function RootNavigation(props: IProps) {
+function RootNavigation() {
   return (
     <BrowserRouter>
       <Routes>

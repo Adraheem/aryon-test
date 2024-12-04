@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import Sidebar from "./sidebar";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import {Icon} from "@iconify/react";
-import Button from "../Button";
 import ReactSwitch from "react-switch";
 import useThemeContext from "../../context/themeContext/hook";
 import useAuthStore from "../../stores/store";
+import {Button} from "../ui/button";
 
 interface IProps {
 }
@@ -33,13 +33,14 @@ function Layout(props: IProps) {
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
       </div>
       <main>
-        <div className="flex justify-between items-center py-5">
+        <div className="flex justify-between items-center py-5 pl-5">
           <Button
-            variant="GHOST"
+            variant="ghost"
+            size="icon"
             onClick={() => setIsOpen(true)}
             className="inline-flex lg:hidden"
           >
-            <Icon icon="proicons:menu" width={24} height={24}/>
+            <Icon icon="proicons:menu" width={32} height={32}/>
           </Button>
 
           <div className="px-5 ml-auto relative z-[1]">

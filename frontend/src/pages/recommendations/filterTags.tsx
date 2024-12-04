@@ -5,6 +5,7 @@ import utils from "../../utils";
 import useFilterContext from "../../context/filterContext/hook";
 import {Input} from "../../components/ui/input";
 import {Button} from "../../components/ui/button";
+import {Checkbox} from "../../components/ui/checkbox";
 
 interface IProps {
 }
@@ -56,7 +57,8 @@ function FilterTags(props: IProps) {
   }
 
   return (
-    <div className="bg-background text-foreground drop-shadow-sm p-4 border border-border rounded-md">
+    <div
+      className="bg-background text-foreground drop-shadow-sm p-4 border border-border rounded-md">
       <p className="small">Filter ({checked.length} applied)</p>
       <div className="my-2">
         <Input
@@ -68,28 +70,36 @@ function FilterTags(props: IProps) {
 
       {
         !!filteredAvailableTags ? (
-          <div className="max-h-60 overflow-y-auto">
-            {Object.entries(filteredAvailableTags).map((entry: [string, string[]]) => (
-              <div key={`entry-${entry[0]}`}>
-                <p className="capitalize py-2 px-4 bg-slate-200 dark:bg-primary-800 my-2">{entry[0]}</p>
-                {
-                  entry[1].map((tag, index) => (
-                    <label key={`tag-${entry[0]}-${index}`} data-testid={tag} className="block">
-                      <input
-                        type="checkbox"
-                        checked={checked.includes(tag)}
-                        onChange={() => toggleCheck(tag)}
-                      />
-                      <span className='ml-2'>{tag}</span>
-                    </label>
-                  ))
-                }
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>No tags</p>
-        )
+            <div className="max-h-60 overflow-y-auto">
+              {Object.entries(filteredAvailableTags).map((entry: [string, string[]]) => (
+                <div key={`entry-${entry[0]}`}>
+                  <p
+                    className="capitalize py-2 px-4 bg-slate-200 dark:bg-primary-800 my-2">{entry[0]}</p>
+                  <div className="grid gap-2">
+                    {
+                      entry[1].map((tag, index) => (
+                        <div key={`tag-${entry[0]}-${index}`} data-testid={tag}
+                             className="flex items-center space-x-2">
+                          <Checkbox id={`tag-${entry[0]}-${index}`} checked={checked.includes(tag)}
+                                    onCheckedChange={() => toggleCheck(tag)}/>
+                          <label
+                            htmlFor={`tag-${entry[0]}-${index}`}
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          >
+                            {tag}
+                          </label>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              ))}
+            </div>
+          )
+          :
+          (
+            <p>No tags</p>
+          )
       }
       <hr className="my-2"/>
       <Button
