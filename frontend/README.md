@@ -5,7 +5,7 @@ This is a React frontend take-home assessment to test my frontend skills.
 
 ## Demo
 ### Video Demo
-[![Explainer Video](https://img.youtube.com/vi/F_lhajtauas/0.jpg)](https://www.youtube.com/watch?v=F_lhajtauas)
+[![Explainer Video](https://img.youtube.com/vi/gEEQ5vdIbyQ/0.jpg)](https://www.youtube.com/watch?v=gEEQ5vdIbyQ)
 
 ### Live Demo
 [https://aryon-test-zeta.vercel.app/](https://aryon-test-zeta.vercel.app)
@@ -112,4 +112,12 @@ With this dashboard, security teams can manage and prioritize security rules eff
 - Auth state persistence
 
 ### Technical Requirements
-
+- React.js
+- TypeScript
+- Tailwind
+- Jest
+- React Testing Library
+- ShadCN UI
+- Zod + React Hook Form
+- Zustand for state management
+- React Query
