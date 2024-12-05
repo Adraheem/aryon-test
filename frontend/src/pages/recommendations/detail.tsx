@@ -43,7 +43,7 @@ function RecommendationDetail({data, onClose, archived, handleRemoveItem}: IProp
   return (
     <div className="flex flex-col h-[100dvh]">
       <div className="p-5 md:p-10 flex-1 overflow-y-auto">
-        <div className="flex gap-4 items-start md:items-center">
+        <div className="flex gap-4 items-start">
           <div>
             <div
               className="h-16 w-16 bg-primary text-white flex items-center justify-center p-5 rounded-md">
