@@ -5,7 +5,7 @@ This is a React frontend take-home assessment to test my frontend skills.
 
 ## Demo
 ### Video Demo
-[![Explainer Video](https://img.youtube.com/vi/F_lhajtauas/0.jpg)](https://www.youtube.com/watch?v=F_lhajtauas)
+[![Explainer Video](https://img.youtube.com/vi/gEEQ5vdIbyQ/0.jpg)](https://www.youtube.com/watch?v=gEEQ5vdIbyQ)
 
 ### Live Demo (Client)
 [https://aryon-test-zeta.vercel.app/](https://aryon-test-zeta.vercel.app)
