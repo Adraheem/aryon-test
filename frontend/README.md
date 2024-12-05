@@ -13,19 +13,19 @@ This is a React frontend take-home assessment to test my frontend skills.
 ## Set up
 - Install dependencies
 ```shell
-yarn
+npm install
 ```
 - Start the project. The app will start on [http://localhost:3000](http://localhost:3000)
 ```shell
-yarn start
+npm run start
 ```
 - Run tests
 ```shell
-yarn test
+npm run test
 ```
 - Run tests with coverage
 ```shell
-yarn test:coverage
+npm run test:coverage
 ```
 
 ## Developer
