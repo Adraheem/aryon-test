@@ -27,7 +27,7 @@ function RecommendationDetail({data, onClose, archived, handleRemoveItem}: IProp
     const action = archived ? recommendationService.unarchive : recommendationService.archive;
     action(data.recommendationId)
       .then(res => {
-        toast.success(archived ? "Post unarchived successfully" : "Post archived successfully");
+        toast.success(archived ? `Recommendation unarchived successfully` : `Recommendation archived successfully`);
         !!handleRemoveItem && handleRemoveItem(data.recommendationId)
         setToggling(false)
         onClose && onClose();

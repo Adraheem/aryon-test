@@ -1,7 +1,6 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {AvailableTags} from "../../types";
 import recommendationService from "../../services/recommendation.service";
-import utils from "../../utils";
 import useFilterContext from "../../context/filterContext/hook";
 import {Input} from "../../components/ui/input";
 import {Button} from "../../components/ui/button";
@@ -12,32 +11,28 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../../components/ui/accordion"
+import {useQuery} from "@tanstack/react-query";
 
 
 interface IProps {
 }
 
 function FilterTags(props: IProps) {
-  const [availableTags, setAvailableTags] = useState<AvailableTags>();
   const [search, setSearch] = useState("");
   const {tags: checked, setTags: setChecked} = useFilterContext();
 
-  useEffect(() => {
-    if (!availableTags) {
-      recommendationService.getRecommendations({limit: 0})
-        .then(res => {
-          setAvailableTags(res.availableTags)
-        })
-        .catch(err => {
-          utils.handleError(err);
-        })
-    }
-  }, [availableTags]);
+  const {data: availableTags, isError} = useQuery({
+    queryKey: ["availableTags"],
+    queryFn: () => recommendationService.getRecommendations({limit: 0}),
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
+
 
   const filteredAvailableTags: AvailableTags | undefined = useMemo(() => {
     if (!!availableTags) {
       if (search.length === 0) {
-        return availableTags
+        return availableTags.availableTags
       } else {
         const filterValues = (values: string[]) =>
           values.filter((value) =>
@@ -45,10 +40,10 @@ function FilterTags(props: IProps) {
           );
 
         return {
-          classes: filterValues(availableTags.classes),
-          frameworks: filterValues(availableTags.frameworks),
-          providers: filterValues(availableTags.providers),
-          reasons: filterValues(availableTags.reasons),
+          classes: filterValues(availableTags?.availableTags?.classes ?? []),
+          frameworks: filterValues(availableTags?.availableTags?.frameworks ?? []),
+          providers: filterValues(availableTags?.availableTags?.providers ?? []),
+          reasons: filterValues(availableTags?.availableTags?.reasons ?? []),
         };
       }
     }
@@ -75,7 +70,11 @@ function FilterTags(props: IProps) {
       </div>
 
       {
-        !!filteredAvailableTags ? (
+        isError ? (
+          <div>
+            <p>Unable to fetch available tags</p>
+          </div>
+        ) : !!filteredAvailableTags ? (
             <div className="max-h-60 overflow-y-auto">
               <Accordion
                 type="multiple"
@@ -122,7 +121,10 @@ function FilterTags(props: IProps) {
       <Button
         className="w-full"
         variant="ghost"
-        onClick={() => setChecked([])}
+        onClick={() => {
+          setChecked([]);
+          setSearch("");
+        }}
       >
         Clear filters
       </Button>

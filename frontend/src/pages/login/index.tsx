@@ -72,7 +72,7 @@ function LoginPage() {
                 <FormItem>
                   <FormLabel>Username</FormLabel>
                   <FormControl>
-                    <Input placeholder="Username" {...field} />
+                    <Input placeholder="Username" autoComplete="username" {...field} />
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
@@ -86,7 +86,7 @@ function LoginPage() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Password" type="password" {...field} />
+                    <Input placeholder="Password" type="password" autoComplete="current-password" {...field} />
                   </FormControl>
                   <FormMessage/>
                 </FormItem>

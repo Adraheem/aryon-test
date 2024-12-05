@@ -71,18 +71,14 @@ function RecommendationsPage({archived}: IProps) {
     <Container>
       <div className="flex items-center mb-10">
         <h4 className="h5 md:h4">Recommendations</h4>
-        {
-          !archived && (
-            <div className="ml-auto">
-              <Link to="/recommendations/archive">
-                <Button type="button">
-                  <Icon icon="f7:archivebox" width={20} height={20}/>
-                  <span>Archive</span>
-                </Button>
-              </Link>
-            </div>
-          )
-        }
+        <div className="ml-auto">
+          <Link to={archived ? "/recommendations" : "/recommendations/archive"}>
+            <Button type="button">
+              <Icon icon="f7:archivebox" width={20} height={20}/>
+              <span>{archived ? "Active" : "Archive"}</span>
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <div className="my-10 flex justify-between flex-wrap gap-4 items-center">
