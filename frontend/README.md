@@ -5,7 +5,7 @@ This is a React frontend take-home assessment to test my frontend skills.
 
 ## Demo
 ### Video Demo
-[![Explainer Video](https://img.youtube.com/vi/F_lhajtauas/0.jpg)](https://www.youtube.com/watch?v=F_lhajtauas)
+[![Explainer Video](https://img.youtube.com/vi/gEEQ5vdIbyQ/0.jpg)](https://www.youtube.com/watch?v=gEEQ5vdIbyQ)
 
 ### Live Demo
 [https://aryon-test-zeta.vercel.app/](https://aryon-test-zeta.vercel.app)
@@ -112,48 +112,12 @@ With this dashboard, security teams can manage and prioritize security rules eff
 - Auth state persistence
 
 ### Technical Requirements
-
-1. TypeScript Implementation:
-
-- Strict mode enabled
-- Full type coverage
-- Proper interface definitions
-
-2. State Management:
-
-- React Context for:
-    - Auth state
-    - User preferences
-    - Filter state
-- Clean state organization
-- Proper state persistence
-
-3. Routing & Navigation:
-
-- Protected route implementation
-- Route-based code splitting
-- Deep linking support
-- Navigation state management
-
-4. Session Management (Bonus):
-
-- JWT token handling
-- Session timeout handling
-- Auth state synchronization
-
-1. Styling:
-
-- TailwindCSS
-- Responsive design
-- Consistent theming
-
-6. Performance:
-
-- Code splitting
-- Lazy loading
-- Proper memoization
-- Loading state management
-
-7. Testing:
-
-- Unit tests for components
+- React.js
+- TypeScript
+- Tailwind
+- Jest
+- React Testing Library
+- ShadCN UI
+- Zod + React Hook Form
+- Zustand for state management
+- React Query
