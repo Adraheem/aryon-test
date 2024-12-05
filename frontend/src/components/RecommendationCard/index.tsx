@@ -41,9 +41,14 @@ function RecommendationCard({onClick, archived, data}: IProps) {
           </p>
           <div className="flex gap-2 flex-wrap mt-4">
             {
-              data.frameworks.map((framework, idx) => (
+              data.frameworks.slice(0, 2).map((framework, idx) => (
                 <Badge key={`framework-${idx}`} variant="secondary">{framework.name}</Badge>
               ))
+            }
+            {
+              data.frameworks.length > 2 && (
+                <Badge variant="secondary">+{data.frameworks.length - 2}</Badge>
+              )
             }
           </div>
         </div>
@@ -58,7 +63,8 @@ function RecommendationCard({onClick, archived, data}: IProps) {
                 month</p>
             </div>
             <hr className='my-3 hidden lg:block'/>
-            <div className="flex flex-wrap flex-col md:flex-row gap-1 md:gap-3 justify-center md:items-center">
+            <div
+              className="flex flex-wrap flex-col md:flex-row gap-1 md:gap-3 justify-center md:items-center">
               <p className="font-semibold">Value score</p>
               <ValueScore score={Math.floor(data.score / 100 * 4)}/>
             </div>
