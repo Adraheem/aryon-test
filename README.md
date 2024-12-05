@@ -4,8 +4,14 @@ This is a React frontend take-home assessment to test my frontend skills.
 
 
 ## Demo
+### Video Demo
 [![Explainer Video](https://img.youtube.com/vi/F_lhajtauas/0.jpg)](https://www.youtube.com/watch?v=F_lhajtauas)
 
+### Live Demo (Client)
+[https://aryon-test-zeta.vercel.app/](https://aryon-test-zeta.vercel.app)
+
+### Live Demo (Server)
+[https://aryon-server.vercel.app](https://aryon-server.vercel.app)
 
 ## Set up
 - CD into the `frontend` folder
@@ -14,19 +20,19 @@ cd frontend
 ```
 - Install dependencies
 ```shell
-yarn
+npm i
 ```
 - Start the project, this will start both the frontend and backend applications. The app will start on [http://localhost:3000](http://localhost:3000)
 ```shell
-yarn start:dev
+npm run start:dev
 ```
 - Run tests
 ```shell
-yarn test
+npm run test
 ```
 - Run tests with coverage
 ```shell
-yarn test:coverage
+npm run test:coverage
 ```
 
 ## Developer
@@ -61,26 +67,26 @@ With this dashboard, security teams can manage and prioritize security rules eff
 
 - Infinite scrolling list of recommendations
 - Each recommendation card displays:
-    - Title and description
-    - Risk score indicator
-    - Cloud provider icons
-    - Framework compliance badges
-    - Quick archive action
+  - Title and description
+  - Risk score indicator
+  - Cloud provider icons
+  - Framework compliance badges
+  - Quick archive action
 - Responsive flex layout
 - Loading states and error handling
 
 #### 2. Search & Filter System
 
 - Debounced search (300ms) across:
-    - Title
-    - Description
-    - Reasons
-    - Framework names
+  - Title
+  - Description
+  - Reasons
+  - Framework names
 - Multi-tag filtering:
-    - Framework filters
-    - Cloud provider filters
-    - Risk class filters
-    - Reason filters
+  - Framework filters
+  - Cloud provider filters
+  - Risk class filters
+  - Reason filters
 - Real-time results updates
 - Clear loading states
 - "No results" handling
@@ -89,11 +95,11 @@ With this dashboard, security teams can manage and prioritize security rules eff
 
 - Side panel implementation
 - Complete recommendation details:
-    - Full description
-    - Impact assessment
-    - Resource implications (Resources enforced by policy)
-    - Framework compliance
-    - Implementation reasons
+  - Full description
+  - Impact assessment
+  - Resource implications (Resources enforced by policy)
+  - Framework compliance
+  - Implementation reasons
 - Archive/unarchive functionality
 - Smooth transitions
 
@@ -113,48 +119,12 @@ With this dashboard, security teams can manage and prioritize security rules eff
 - Auth state persistence
 
 ### Technical Requirements
-
-1. TypeScript Implementation:
-
-- Strict mode enabled
-- Full type coverage
-- Proper interface definitions
-
-2. State Management:
-
-- React Context for:
-    - Auth state
-    - User preferences
-    - Filter state
-- Clean state organization
-- Proper state persistence
-
-3. Routing & Navigation:
-
-- Protected route implementation
-- Route-based code splitting
-- Deep linking support
-- Navigation state management
-
-4. Session Management (Bonus):
-
-- JWT token handling
-- Session timeout handling
-- Auth state synchronization
-
-1. Styling:
-
-- TailwindCSS
-- Responsive design
-- Consistent theming
-
-6. Performance:
-
-- Code splitting
-- Lazy loading
-- Proper memoization
-- Loading state management
-
-7. Testing:
-
-- Unit tests for components
+- React.js
+- TypeScript
+- Tailwind
+- Jest
+- React Testing Library
+- ShadCN UI
+- Zod + React Hook Form
+- Zustand for state management
+- React Query
