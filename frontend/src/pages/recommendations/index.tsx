@@ -48,8 +48,9 @@ function RecommendationsPage({archived}: IProps) {
       if (!oldData) return oldData;
       return {
         ...oldData,
-        pages: oldData.pages.map((page) => ({
+        pages: oldData.pages.map((page, index) => ({
           ...page,
+          pagination: {...page.pagination, totalItems: page.pagination.totalItems - (index === 0 ? 1 : 0)},
           data: page.data.filter((item) => item.recommendationId !== id),
         })),
       };
