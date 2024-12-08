@@ -3,6 +3,7 @@ import FilterTags from "./filterTags";
 import {Input} from "../../components/ui/input";
 import {Popover, PopoverContent, PopoverTrigger,} from "../../components/ui/popover"
 import {Button} from "../../components/ui/button";
+import useFilterContext from "../../context/filterContext/hook";
 
 
 interface IProps {
@@ -11,6 +12,7 @@ interface IProps {
 
 function RecommendationsFilter({setDebouncedTerm}: IProps) {
   const [search, setSearch] = useState("");
+  const {tags} = useFilterContext();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,7 +33,17 @@ function RecommendationsFilter({setDebouncedTerm}: IProps) {
       </div>
       <div>
         <Popover>
-          <PopoverTrigger asChild><Button variant="default">Filter</Button></PopoverTrigger>
+          <PopoverTrigger asChild>
+            <Button variant="default" className="relative">
+              Filter
+              {tags.length > 0 && (
+                <div
+                  data-testid="filter-indicator"
+                  className="w-4 h-4 rounded-full absolute -top-1 -right-1 bg-red-500 border-2 border-background"
+                />
+              )}
+            </Button>
+          </PopoverTrigger>
           <PopoverContent><FilterTags/></PopoverContent>
         </Popover>
       </div>
