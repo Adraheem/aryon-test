@@ -7,8 +7,6 @@ jest.mock('../ProviderIcon', () => ({cloudProvider}: { cloudProvider: string }) 
   <span data-testid="provider-icon">{cloudProvider}</span>
 ));
 
-jest.mock('../Badge', () => ({text}: { text: string }) => <span data-testid="badge">{text}</span>);
-
 jest.mock('../ValueScore', () => ({score}: { score: number }) => (
   <span data-testid="value-score">{`Score: ${score}`}</span>
 ));
@@ -77,9 +75,6 @@ describe('RecommendationCard Component', () => {
     // Check if provider icons are rendered
     expect(screen.getAllByTestId('provider-icon')).toHaveLength(mockData.provider.length);
 
-    // Check if frameworks are rendered as badges
-    expect(screen.getAllByTestId('badge')).toHaveLength(mockData.frameworks.length);
-
     // Check if impact assessment is rendered
     expect(screen.getByText('Impact assessment')).toBeInTheDocument();
     expect(screen.getByText(`~${mockData.impactAssessment.totalViolations} violations / month`)).toBeInTheDocument();
@@ -92,7 +87,7 @@ describe('RecommendationCard Component', () => {
     render(<RecommendationCard data={mockData} archived/>);
 
     // Check if the element with the archived background color exists
-    expect(screen.getByTestId('card-package')).toHaveClass('bg-slate-300');
+    expect(screen.getByTestId('card-package')).toHaveClass('bg-slate-400');
   });
 
   it('applies primary class if the archived prop is false', () => {

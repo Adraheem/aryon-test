@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Sidebar from "./sidebar";
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router";
 import {Icon} from "@iconify/react";
 import ReactSwitch from "react-switch";
 import useThemeContext from "../../context/themeContext/hook";
@@ -35,6 +35,7 @@ function Layout(props: IProps) {
       <main>
         <div className="flex justify-between items-center py-5 pl-5">
           <Button
+            data-testid="sidebar-toggle-button"
             variant="ghost"
             size="icon"
             onClick={() => setIsOpen(true)}

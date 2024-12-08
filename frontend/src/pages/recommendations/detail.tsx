@@ -178,7 +178,7 @@ function RecommendationDetail({data, onClose, archived, handleRemoveItem}: IProp
       <hr/>
 
       <div className="flex justify-end items-center gap-4 p-5">
-        <Button type="button" onClick={toggleArchive} variant="outline" disabled={toggling}>
+        <Button type="button" data-testid="archive-button" onClick={toggleArchive} variant="outline" disabled={toggling}>
           {toggling ? (
             <Loader2 className="animate-spin"/>
           ) : (

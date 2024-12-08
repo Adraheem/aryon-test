@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Container from "../../components/Container";
 import {ILoginRequest} from "../../types";
 import authService from "../../services/auth.service";
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router";
 import toast from "react-hot-toast";
 import Logo from "../../components/Logo";
 import {useForm} from "react-hook-form";
@@ -27,12 +27,15 @@ const LoginSchema: ZodType<ILoginRequest> = z.object({
 });
 
 function LoginPage() {
-  // const {isAuthenticated, login} = useAuthContext();
   const {login, token} = useAuthStore();
   const form = useForm<ILoginRequest>({
     resolver: zodResolver(LoginSchema),
     mode: "all",
-    reValidateMode: "onChange"
+    reValidateMode: "onChange",
+    defaultValues: {
+      username: "",
+      password: ""
+    }
   });
   const navigate = useNavigate();
 
@@ -62,7 +65,7 @@ function LoginPage() {
       >
         <Logo/>
 
-        <h3 className="leading-none mt-6">Login</h3>
+        <h3 className="leading-none mt-6" data-testid="login-title">Login</h3>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-5 mt-8">
             <FormField
@@ -86,7 +89,8 @@ function LoginPage() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Password" type="password" autoComplete="current-password" {...field} />
+                    <Input placeholder="Password" type="password"
+                           autoComplete="current-password" {...field} />
                   </FormControl>
                   <FormMessage/>
                 </FormItem>

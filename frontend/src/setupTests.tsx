@@ -3,6 +3,9 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import {TextEncoder} from 'node:util'
+
+global.TextEncoder = TextEncoder
 
 jest.mock('@iconify/react', () => ({
   Icon: ({icon, ...props}: { icon: string }) => (
@@ -13,17 +16,6 @@ jest.mock('@iconify/react', () => ({
 jest.mock('react-hot-toast');
 
 jest.mock('axios');
-
-jest.mock('react-hot-toast');
-
-jest.mock('@tanstack/react-query', () => ({
-  useInfiniteQuery: jest.fn(),
-}));
-
-jest.mock('react-modal', () => ({
-  setAppElement: jest.fn(), // Mock setAppElement
-  default: jest.fn().mockImplementation(({children}) => <div>{children}</div>), // Mock Modal component
-}));
 
 jest.mock("./services/api.service", () => ({
   get: jest.fn(),

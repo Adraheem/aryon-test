@@ -1,6 +1,6 @@
 import React from 'react';
 import NavList from "./navlist";
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 import SidebarProfile from "./sidebarProfile";
 import {navItems} from "../../assets/data";
 import Logo from "../Logo";

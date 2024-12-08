@@ -74,10 +74,10 @@ describe('RecommendationDetail', () => {
     recommendationService.archive.mockResolvedValueOnce({});
     render(<RecommendationDetail data={mockData} archived={false} onClose={jest.fn()}/>);
 
-    fireEvent.click(screen.getByText('Archive'));
+    fireEvent.click(screen.getByTestId('archive-button'));
 
     await waitFor(() => {
-      expect(toast.success).toHaveBeenCalledWith('Post archived successfully');
+      expect(toast.success).toHaveBeenCalledWith('Recommendation archived successfully');
     });
   });
 

@@ -6,7 +6,7 @@ import RecommendationDetail from "./detail";
 import recommendationService from "../../services/recommendation.service";
 import {Recommendation, RecommendationsDataResponse} from "../../types";
 import {Icon} from "@iconify/react";
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {InfiniteData, useInfiniteQuery, useQueryClient} from "@tanstack/react-query";
 import RecommendationsFilter from "./filter";

@@ -93,9 +93,12 @@ function FilterTags(props: IProps) {
                           entry[1].map((tag, index) => (
                             <div key={`tag-${entry[0]}-${index}`} data-testid={tag}
                                  className="flex items-center space-x-2">
-                              <Checkbox id={`tag-${entry[0]}-${index}`}
-                                        checked={checked.includes(tag)}
-                                        onCheckedChange={() => toggleCheck(tag)}/>
+                              <Checkbox
+                                data-testid={`tag-${entry[0]}-${index}`}
+                                id={`tag-${entry[0]}-${index}`}
+                                checked={checked.includes(tag)}
+                                onCheckedChange={() => toggleCheck(tag)}
+                              />
                               <label
                                 htmlFor={`tag-${entry[0]}-${index}`}
                                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

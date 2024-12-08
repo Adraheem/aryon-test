@@ -22,7 +22,7 @@ function ProviderIcon({cloudProvider}: IProps) {
   }, [cloudProvider]);
 
   return (
-    <Icon icon={icon} width="24" height="24"/>
+    <Icon data-icon={icon} icon={icon} width="24" height="24"/>
   );
 }
 
