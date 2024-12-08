@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import {providers} from "../../assets/data";
 import {Button} from "../../components/ui/button";
 import {Loader2} from "lucide-react";
+import utils from "../../utils";
 
 interface IProps {
   data?: Recommendation;
@@ -34,7 +35,7 @@ function RecommendationDetail({data, onClose, archived, handleRemoveItem}: IProp
       })
       .catch(err => {
         setToggling(false);
-        toast.error(err?.response?.data?.error ?? err?.message ?? "An error occurred")
+        utils.handleError(err);
       })
   }, [archived, data?.recommendationId, onClose]);
 
@@ -178,7 +179,8 @@ function RecommendationDetail({data, onClose, archived, handleRemoveItem}: IProp
       <hr/>
 
       <div className="flex justify-end items-center gap-4 p-5">
-        <Button type="button" data-testid="archive-button" onClick={toggleArchive} variant="outline" disabled={toggling}>
+        <Button type="button" data-testid="archive-button" onClick={toggleArchive} variant="outline"
+                disabled={toggling}>
           {toggling ? (
             <Loader2 className="animate-spin"/>
           ) : (
